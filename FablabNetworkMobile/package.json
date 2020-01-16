@@ -15,6 +15,7 @@
     "@expo/samples": "~3.0.3",
     "@expo/vector-icons": "^10.0.3",
     "@react-navigation/web": "^1.0.0-alpha.9",
+    "bootstrap": "^4.4.1",
     "expo": "^35.0.0",
     "expo-asset": "^7.0.0",
     "expo-constants": "^7.0.0",
@@ -22,7 +23,9 @@
     "expo-location": "~7.0.0",
     "expo-permissions": "latest",
     "expo-web-browser": "^7.0.0",
+    "i18n-js": "latest",
     "react": "16.8.3",
+    "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "16.8.3",
     "react-geocode": "^0.2.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",
@@ -30,8 +33,7 @@
     "react-native-web": "^0.11.7",
     "react-navigation": "^3.12.0",
     "unstated": "^2.1.1",
-    "unstated-persist": "0.0.4",
-    "i18n-js": "latest"
+    "unstated-persist": "0.0.4"
   },
   "devDependencies": {
     "@react-native-community/async-storage": "^1.7.1",
