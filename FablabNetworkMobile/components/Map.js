@@ -1,53 +1,30 @@
 import React from 'react';
 import MapView, {Marker} from 'react-native-maps';
 import {Dimensions, StyleSheet, Text} from 'react-native';
+import {getFablab} from './webServices/getFablabs'
 
 export default class Map extends React.Component {
 
     state = {
         fablabs: [],
+        total: this.props.totalView,
         loading: true
-
     }
-
-    getFablab = async () => {
-        const url = "http://fablabnetwork.tk/php/get-fablabs.php";
-
-        return await fetch(url)
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (response) {
-
-                const fablabs = response;
-                let array = []
-
-                for (let i = 0; i < fablabs.length; i++) {
-
-                    array = [...array, {
-                        name: fablabs[i].name,
-                        image: fablabs[i].image,
-                        coord: {lat: Number(fablabs[i].lat), lon: Number(fablabs[i].lon)}
-                    }];
-                }
-
-                return array
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-
-    }
-
 
     componentDidMount() {
-        this.getFablab().then(response => {
-            const array = response
-            console.log(array)
-            this.setState({
-                fablabs: response
-            })
-        }).then(() => this.setState({loading: false}))
+
+        console.log(this.props)
+
+        if (this.state.total !== "undefined") {
+            console.log('entrato')
+            getFablab().then(response => {
+                this.setState({
+                    fablabs: response
+                })
+            }).then(() => this.setState({loading: false}))
+        } else {
+            this.setState({fablabs: [{coord: this.props.coord}], loading: false})
+        }
     }
 
 
@@ -56,8 +33,7 @@ export default class Map extends React.Component {
             return <Text>loading</Text>;
         } else {
             return (
-
-                <MapView style={styles.mapStyle}>
+                <MapView style={styles.mapStyle} showsUserLocation={true} followsUserLocation={true}>
                     {(
                         this.state.fablabs.map(function (d, idx) {
                             return (

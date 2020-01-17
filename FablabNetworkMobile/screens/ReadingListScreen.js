@@ -13,7 +13,7 @@ class ReadingListScreen extends React.Component {
         return (
             <View>
                 <Button
-                    onPress={() => this.props.navigation.navigate('Map')}
+                    onPress={() => this.props.navigation.navigate('Map', {total: true})}
                     title={t('showMap')}>
                     Show map
                 </Button>

@@ -1,15 +1,10 @@
-import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
-import {Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import WikiList from "../components/WikiList";
+import {StyleSheet, View} from 'react-native';
 import Fablab from "../components/Fablab";
 
-class HomeScreen extends React.Component {
-
-
+class FablabScreen extends React.Component {
     state = {
         focused: true
-
     }
 
     didBlurSubscription = this.props.navigation.addListener(
@@ -26,20 +21,22 @@ class HomeScreen extends React.Component {
         }
     );
 
-
     static navigationOptions = ({screenProps: {t}}) => ({
         title: t('nearby')
     });
 
+
+    navigationFunction = coord => {
+        this.props.navigation.navigate('Map', coord)
+    }
+
     render() {
-
         return (
-
-
-                <View style={styles.container}>
-
-                </View>
-        )    }
+            <View style={styles.container}>
+                <Fablab navFunction={this.navigationFunction}/>
+            </View>
+        )
+    }
 }
 
 const styles = StyleSheet.create({
@@ -51,4 +48,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default HomeScreen
+export default FablabScreen

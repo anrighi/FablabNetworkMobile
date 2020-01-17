@@ -22,16 +22,20 @@
     "expo-location": "~7.0.0",
     "expo-permissions": "latest",
     "expo-web-browser": "^7.0.0",
+    "i18n-js": "latest",
+    "lottie-react-native": "~2.6.1",
+    "prop-types": "latest",
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-geocode": "^0.2.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",
+    "react-native-animated-loader": "0.0.8",
+    "react-native-elements": "^1.2.7",
     "react-native-gesture-handler": "~1.3.0",
     "react-native-web": "^0.11.7",
     "react-navigation": "^3.12.0",
     "unstated": "^2.1.1",
-    "unstated-persist": "0.0.4",
-    "i18n-js": "latest"
+    "unstated-persist": "0.0.4"
   },
   "devDependencies": {
     "@react-native-community/async-storage": "^1.7.1",
