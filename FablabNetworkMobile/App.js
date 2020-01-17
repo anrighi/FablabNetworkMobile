@@ -1,16 +1,26 @@
-// guida per unstated
-// https://github.com/jamiebuilds/unstated
+/* -------------------------------------------------------------------------
+*  guida per unstated
+*  https://github.com/jamiebuilds/unstated
+*  -------------------------------------------------------------------------
+*  bootstrap:
+*  https://react-bootstrap.github.io/getting-started/introduction/
+*  -------------------------------------------------------------------------
+*/
+
+
 
 import React, {useState} from 'react';
 import {Platform, StatusBar, StyleSheet, View} from 'react-native';
 import AppNavigator from './navigation/AppNavigator';
 import {Provider} from "unstated";
 import i18n from "i18n-js";
+import LoginScreen from "./screens/LoginScreen";
 
 class App extends React.Component {
 
     state = {
-        locale: 'it'
+        locale: 'it',
+        logged: false
     }
 
     t = (scope, options) => {
@@ -22,20 +32,30 @@ class App extends React.Component {
     };
 
     render() {
-        return (
-            <Provider>
-                <View style={styles.container}>
-                    {Platform.OS === 'ios' && <StatusBar barStyle="default"/>}
-                    <AppNavigator
-                        screenProps={{
-                            t: this.t,
-                            locale: this.state.locale,
-                            setLocale: this.setLocale,
-                        }}
-                    />
-                </View>
-            </Provider>
-        )
+
+        if(this.state.logged) {
+            return (
+                <Provider>
+                    <View style={styles.container}>
+                        <AppNavigator
+                            screenProps={{
+                                t: this.t,
+                                locale: this.state.locale,
+                                setLocale: this.setLocale,
+                            }}
+                        />
+                    </View>
+                </Provider>
+            )
+        } else {
+            return (
+                <Provider>
+                    <View style={styles.container}>
+                        <LoginScreen/>
+                    </View>
+                </Provider>
+            )
+        }
     }
 }
 
