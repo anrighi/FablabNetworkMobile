@@ -7,20 +7,6 @@ class FablabScreen extends React.Component {
         focused: true
     }
 
-    didBlurSubscription = this.props.navigation.addListener(
-        'didBlur',
-        payload => {
-            this.setState({focused: false})
-        }
-    );
-
-    willFocusSubscription = this.props.navigation.addListener(
-        'willFocus',
-        payload => {
-            this.setState({focused: true})
-        }
-    );
-
     static navigationOptions = ({screenProps: {t}}) => ({
         title: t('nearby')
     });

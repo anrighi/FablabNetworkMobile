@@ -33,7 +33,7 @@ class App extends React.Component {
 
     render() {
 
-        if(this.state.logged) {
+        if(!this.state.logged) {
             return (
                 <Provider>
                     <View style={styles.container}>
@@ -51,7 +51,6 @@ class App extends React.Component {
             return (
                 <Provider>
                     <View style={styles.container}>
-                        <LoginScreen/>
                     </View>
                 </Provider>
             )

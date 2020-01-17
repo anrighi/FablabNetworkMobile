@@ -13,10 +13,7 @@ export default class Map extends React.Component {
 
     componentDidMount() {
 
-        console.log(this.props)
-
-        if (this.state.total !== "undefined") {
-            console.log('entrato')
+        if (typeof this.state.total !== 'undefined') {
             getFablab().then(response => {
                 this.setState({
                     fablabs: response
@@ -26,7 +23,6 @@ export default class Map extends React.Component {
             this.setState({fablabs: [{coord: this.props.coord}], loading: false})
         }
     }
-
 
     render() {
         if (this.state.loading) {
