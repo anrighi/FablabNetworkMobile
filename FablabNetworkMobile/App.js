@@ -2,12 +2,7 @@
 *  guida per unstated
 *  https://github.com/jamiebuilds/unstated
 *  -------------------------------------------------------------------------
-*  bootstrap:
-*  https://react-bootstrap.github.io/getting-started/introduction/
-*  -------------------------------------------------------------------------
 */
-
-
 
 import React, {useState} from 'react';
 import {Platform, StatusBar, StyleSheet, View} from 'react-native';
@@ -20,7 +15,7 @@ class App extends React.Component {
 
     state = {
         locale: 'it',
-        logged: false
+        logged: false,
     }
 
     t = (scope, options) => {
@@ -31,9 +26,13 @@ class App extends React.Component {
         this.setState({locale})
     };
 
+    setLogged = logged => {
+        this.setState({logged})
+    };
+
     render() {
 
-        if(this.state.logged) {
+        if (this.state.logged) {
             return (
                 <Provider>
                     <View style={styles.container}>
@@ -50,8 +49,12 @@ class App extends React.Component {
         } else {
             return (
                 <Provider>
-                    <View style={styles.container}>
-                        <LoginScreen/>
+                    <View style={styles.login_container}>
+                        <LoginScreen
+                            loggedProps={{
+                                setLogged: this.setLogged,
+                            }}
+                        />
                     </View>
                 </Provider>
             )
@@ -111,6 +114,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
+    },
+    login_container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        margin: 100,
     },
 });
 

@@ -5,7 +5,7 @@ import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import {Subscribe} from 'unstated'
 import {getWikiData} from "./WikiDataGetter";
-import {WikiDataContainer} from "../containers/WikiDataContainer";
+import {WikiDataContainer} from "../containers/LoginContainer";
 import {LocationContainer} from "../containers/LocationContainer";
 
 export default class DevLocation extends React.Component {

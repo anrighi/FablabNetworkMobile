@@ -3,7 +3,7 @@ import {ScrollView, StyleSheet, Image, Text, View, Button, TouchableOpacity} fro
 import {Subscribe} from "unstated";
 import ReadingContainer from "../containers/ReadingContainer";
 import {LocationContainer} from "../containers/LocationContainer";
-import {WikiDataContainer} from "../containers/WikiDataContainer";
+import {WikiDataContainer} from "../containers/LoginContainer";
 import {getWikiData} from "./WikiDataGetter";
 
 export default class PoiCard extends React.Component {
