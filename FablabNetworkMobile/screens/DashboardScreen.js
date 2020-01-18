@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import Fablab from "../components/Fablab";
+import Dashboard from "../components/Dashboard";
 
-class FablabScreen extends React.Component {
+class DashboardScreen extends React.Component {
     state = {
         focused: true
     }
@@ -19,7 +19,7 @@ class FablabScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Fablab navFunction={this.navigationFunction}/>
+                <Dashboard settingsNav={() => this.props.navigation.navigate('ProfileSettings')}/>
             </View>
         )
     }
@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default FablabScreen
+export default DashboardScreen

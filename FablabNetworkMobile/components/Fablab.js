@@ -14,7 +14,6 @@ class Fablab extends Component {
         },
         loading: true,
         nav: this.props.navFunction,
-        setter: this.props.setProps
     }
 
     getFablabData = async (username) => {
