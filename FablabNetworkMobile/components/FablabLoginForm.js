@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import {View, TextInput, Button, Text} from 'react-native';
+import {View, TextInput, Text} from 'react-native';
+import {Button} from "react-native-elements";
 import {login} from "./webServices/login";
 import {Subscribe} from "unstated";
 import {FablabLoginContainer} from "../containers/FablabLoginContainer"
+import {FablabLoginPersistentContainer} from "../containers/FablabLoginPersistentContainer"
 
 const ErrorMessage = () => (
     <Text style={{color: '#e60000'}}>Please check your credentials</Text>
@@ -18,6 +20,8 @@ class FablabLoginForm extends React.Component {
         username: '',
         password: '',
         exception: false,
+        buttonToggler: 'outline',
+        persistence: FablabLoginContainer,
     }
 
     async submit(p, authoriser) {
@@ -59,7 +63,7 @@ class FablabLoginForm extends React.Component {
 
     render() {
         return (
-            <Subscribe to={[FablabLoginContainer]}>
+            <Subscribe to={[this.state.persistence]}>
                 {p => (
                     <View>
                         <TextInput
@@ -82,6 +86,30 @@ class FablabLoginForm extends React.Component {
                             onPress={async () => this.submit(p, this.props.authoriser)}
                         />
 
+                        <Button
+                            icon={{
+                                name: "thumb-up",
+                                size: 15,
+                                color: "white"
+                            }}
+                            title="I wish to remain logged"
+                            type={this.state.buttonToggler}
+                            onPress={async () => {
+                                if(this.state.buttonToggler == 'outline'){
+                                    this.setState({
+                                        buttonToggler: 'solid',
+                                        persistence: FablabLoginPersistentContainer,
+                                    })
+                                    console.log('OK_Persistence');
+                                } else if(this.state.buttonToggler == 'solid'){
+                                    this.setState({
+                                        buttonToggler: 'outline',
+                                        persistence: FablabLoginContainer,
+                                    })
+                                    console.log('NO_Persistence');
+                                }
+                            }}
+                        />
                     </View>
                 )}
             </Subscribe>
