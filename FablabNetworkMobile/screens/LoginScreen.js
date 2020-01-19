@@ -5,9 +5,11 @@ import LoginForm from "../components/LoginForm";
 class LoginScreen extends React.Component {
 
     render() {
+        let func = this.props.loggedProps;
+
         return (
             <View>
-                <LoginForm props={this.loggedProps}/>
+                <LoginForm authoriser={func}/>
             </View>
         );
     }

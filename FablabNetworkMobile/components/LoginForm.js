@@ -11,6 +11,10 @@ const ErrorMessage = () => (
 
 class LoginForm extends React.Component {
 
+    constructor(props) {
+        super(props);
+    }
+
     state = {
         username: '',
         password: '',
@@ -41,9 +45,11 @@ class LoginForm extends React.Component {
                             p.setLogged(r[0].username, true, r[0].name,
                                 r[0].surname, r[0].description, r[0].profile_photo,
                                 r[0].cover_photo, r[0].date_of_birth);
+
                             console.log("Login successful");
+
                             this.setState({exception: false});
-                            console.log(props.loggedProps);
+                            props.setAuth(true);    // Refreshes main page and hides login screen
                         }
                     }
                 )
@@ -69,11 +75,12 @@ class LoginForm extends React.Component {
                             secureTextEntry={true}
                         />
 
+
                         {this.state.exception && <ErrorMessage/>}
 
                         <Button
                             title={'Login'}
-                            onPress={async () => this.submit(p, this.props)}
+                            onPress={async () => this.submit(p, this.props.authoriser)}
                         />
 
                     </View>

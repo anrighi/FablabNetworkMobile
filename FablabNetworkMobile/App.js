@@ -27,7 +27,8 @@ class App extends React.Component {
     };
 
     setAuth = logged => {
-        this.setState({logged})
+        this.setState({logged});
+        console.log('true');
     };
 
     render() {
@@ -46,6 +47,7 @@ class App extends React.Component {
                     </View>
                 </Provider>
             )
+
         } else {
             return (
                 <Provider>
@@ -61,6 +63,9 @@ class App extends React.Component {
         }
     }
 }
+
+
+
 
 const en = {
     addLocation: 'Add location',
