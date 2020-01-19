@@ -17,7 +17,7 @@ class LoginForm extends React.Component {
         exception: false,
     }
 
-    async submit(props) {
+    async submit(p, props) {
 
         if (this.state.username == '' && this.state.password == ''
             | this.state.username == '' | this.state.password == '') {
@@ -38,11 +38,12 @@ class LoginForm extends React.Component {
                         } else if (r == "passwordException") {
                             this.setState({exception: true});
                         } else {
-                            props.setLogged(r[0].username, true, r[0].name,
+                            p.setLogged(r[0].username, true, r[0].name,
                                 r[0].surname, r[0].description, r[0].profile_photo,
                                 r[0].cover_photo, r[0].date_of_birth);
                             console.log("Login successful");
                             this.setState({exception: false});
+                            console.log(props.loggedProps);
                         }
                     }
                 )
@@ -54,7 +55,7 @@ class LoginForm extends React.Component {
     render() {
         return (
             <Subscribe to={[LoginContainer]}>
-                {props => (
+                {p => (
                     <View>
                         <TextInput
                             value={this.state.username}
@@ -72,7 +73,7 @@ class LoginForm extends React.Component {
 
                         <Button
                             title={'Login'}
-                            onPress={async () => this.submit(props)}
+                            onPress={async () => this.submit(p, this.props)}
                         />
 
                     </View>

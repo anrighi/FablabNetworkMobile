@@ -26,7 +26,7 @@ class App extends React.Component {
         this.setState({locale})
     };
 
-    setLogged = logged => {
+    setAuth = logged => {
         this.setState({logged})
     };
 
@@ -52,7 +52,7 @@ class App extends React.Component {
                     <View style={styles.login_container}>
                         <LoginScreen
                             loggedProps={{
-                                setLogged: this.setLogged,
+                                setAuth: this.setAuth,
                             }}
                         />
                     </View>
