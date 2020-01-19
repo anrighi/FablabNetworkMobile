@@ -2,7 +2,7 @@ import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {Subscribe} from "unstated";
 import WikiCard from "./WikiCard";
-import {WikiDataContainer} from "../containers/LoginContainer";
+import {WikiDataContainer} from "../containers/UserLoginContainer";
 
 export default class WikiList extends React.Component {
 

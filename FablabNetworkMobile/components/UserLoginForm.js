@@ -2,14 +2,13 @@ import React, {Component} from 'react';
 import {View, TextInput, Button, Text} from 'react-native';
 import {login} from "./webServices/login";
 import {Subscribe} from "unstated";
-import {LoginContainer} from "../containers/LoginContainer"
-import {colors} from "react-native-elements";
+import {UserLoginContainer} from "../containers/UserLoginContainer"
 
 const ErrorMessage = () => (
     <Text style={{color: '#e60000'}}>Please check your credentials</Text>
 )
 
-class LoginForm extends React.Component {
+class UserLoginForm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -21,7 +20,7 @@ class LoginForm extends React.Component {
         exception: false,
     }
 
-    async submit(p, props) {
+    async submit(p, authoriser) {
 
         if (this.state.username == '' && this.state.password == ''
             | this.state.username == '' | this.state.password == '') {
@@ -34,7 +33,7 @@ class LoginForm extends React.Component {
                 isEmail = true;
             }
 
-            login(this.state.username, this.state.password, isEmail)
+            login(this.state.username, this.state.password, isEmail, 'user')
                 .then(
                     r => {
                         if (r == "usernameException") {
@@ -42,14 +41,14 @@ class LoginForm extends React.Component {
                         } else if (r == "passwordException") {
                             this.setState({exception: true});
                         } else {
-                            p.setLogged(r[0].username, true, r[0].name,
+                            p.setLogged(r[0].username, r[0].name,
                                 r[0].surname, r[0].description, r[0].profile_photo,
                                 r[0].cover_photo, r[0].date_of_birth);
 
                             console.log("Login successful");
 
                             this.setState({exception: false});
-                            props.setAuth(true);    // Refreshes main page and hides login screen
+                            authoriser.setAuth(true);    // Refreshes main page and hides login screen
                         }
                     }
                 )
@@ -60,7 +59,7 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <Subscribe to={[LoginContainer]}>
+            <Subscribe to={[UserLoginContainer]}>
                 {p => (
                     <View>
                         <TextInput
@@ -91,4 +90,4 @@ class LoginForm extends React.Component {
     }
 }
 
-export default LoginForm
+export default UserLoginForm

@@ -2,6 +2,9 @@
 *  guida per unstated
 *  https://github.com/jamiebuilds/unstated
 *  -------------------------------------------------------------------------
+*  guida per react-elements
+*  https://react-native-elements.github.io/react-native-elements/docs/getting_started.html
+*  -------------------------------------------------------------------------
 */
 
 import React, {useState} from 'react';
@@ -10,6 +13,7 @@ import AppNavigator from './navigation/AppNavigator';
 import {Provider} from "unstated";
 import i18n from "i18n-js";
 import LoginScreen from "./screens/LoginScreen";
+
 
 class App extends React.Component {
 

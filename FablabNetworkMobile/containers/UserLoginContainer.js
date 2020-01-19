@@ -1,10 +1,9 @@
 import {Container} from "unstated";
 
-export class LoginContainer extends Container {
+export class UserLoginContainer extends Container {
 
     state = {
         username: '',
-        loggedin: false,
         name: '',
         surname: '',
         description: '',
@@ -13,11 +12,10 @@ export class LoginContainer extends Container {
         date_of_birth: '',
     }
 
-    setLogged = async (usr, logged, name, surname, description, profile_photo, cover_photo, dob) => {
+    setLogged = async (usr, name, surname, description, profile_photo, cover_photo, dob) => {
 
         this.setState({
             username: usr,
-            loggedin: logged,
             name: name,
             surname: surname,
             description: description,
