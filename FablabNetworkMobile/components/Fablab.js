@@ -6,6 +6,7 @@ import styles from '../styles'
 class Fablab extends Component {
 
     state = {
+        username: 'bitz',
         fablab: {
             name: '',
             image: '',
@@ -20,7 +21,7 @@ class Fablab extends Component {
     }
 
     componentDidMount() {
-        getFablabData('bitz').then(response => {
+        getFablabData(this.state.username).then(response => {
             this.setState({
                 fablab: response
             })
@@ -43,7 +44,7 @@ class Fablab extends Component {
                     flexDirection: 'row',
                 }}
             >
-                <TouchableOpacity style={[styles.navigatorButton, {flex: 2}]} onPress={() => this.state.book()}>
+                <TouchableOpacity style={[styles.navigatorButton, {flex: 2}]} onPress={() => this.state.book(this.state.username)}>
                     <Text style={styles.navigatorText}>Book a machine</Text>
                 </TouchableOpacity>
                 <TouchableOpacity

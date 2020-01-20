@@ -7,20 +7,20 @@ class PrinterScreen extends React.Component {
         title: t('machineList')
     });
 
-    book = (props) => {
-
-        this.props.navigation.navigate('Book', props)
+    book = (id, username) => {
+        this.props.navigation.navigate('Book', {id, username})
     }
 
     render() {
         return (
             <View>
                 <Printer
-                    name={this.props.navigation.state.params.name}
-                    brand={this.props.navigation.state.params.brand}
-                    id={this.props.navigation.state.params.id}
-                    image={this.props.navigation.state.params.image}
-                    hourlyCost={this.props.navigation.state.params.hourlyCost}
+                    name={this.props.navigation.state.params.printerData.name}
+                    brand={this.props.navigation.state.params.printerData.brand}
+                    id={this.props.navigation.state.params.printerData.id}
+                    image={this.props.navigation.state.params.printerData.image}
+                    hourlyCost={this.props.navigation.state.params.printerData.hourlyCost}
+                    fablab={this.props.navigation.state.params.fablabUsername}
                     bookingFunction={this.book}
                 />
             </View>

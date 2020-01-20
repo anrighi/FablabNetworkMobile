@@ -10,11 +10,12 @@ class MachineList extends React.Component {
         printers: [],
         machines: [],
         machineFunction: this.props.machineFunction,
-        printerFunction: this.props.printerFunction
+        printerFunction: this.props.printerFunction,
+        fablabUsername: this.props.fablab
     }
 
     componentDidMount() {
-        getFablabMachines('bitz').then(response => {
+        getFablabMachines(this.state.fablabUsername).then(response => {
             this.setState({
                 printers: response.printers,
                 machines: response.machines,
@@ -38,7 +39,7 @@ class MachineList extends React.Component {
                                         rounded: true,
                                         source: printer.image
                                     }}
-                                    onPress={() => this.state.printerFunction(printer)}
+                                    onPress={() => this.state.printerFunction(printer, this.state.fablabUsername)}
                                 />
                             );
                         })

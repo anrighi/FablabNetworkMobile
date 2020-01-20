@@ -7,8 +7,8 @@ class MachineListScreen extends React.Component {
         title: t('machineList')
     });
 
-    printerFunction = (printerData) => {
-        this.props.navigation.navigate('Printer', printerData)
+    printerFunction = (printerData, fablabUsername) => {
+        this.props.navigation.navigate('Printer', {printerData, fablabUsername})
     }
 
     machineFunction = (machineData) => {
@@ -19,7 +19,7 @@ class MachineListScreen extends React.Component {
     render() {
         return (
             <View>
-                <MachineList machineFunction={this.machineFunction} printerFunction={this.printerFunction}/>
+                <MachineList machineFunction={this.machineFunction} printerFunction={this.printerFunction} fablab={this.props.navigation.state.params}/>
             </View>
         );
     }

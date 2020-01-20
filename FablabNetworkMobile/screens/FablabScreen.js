@@ -16,8 +16,8 @@ class FablabScreen extends React.Component {
         this.props.navigation.navigate('Map', coord)
     }
 
-    bookFunction = () => {
-        this.props.navigation.navigate('MachineList')
+    bookFunction = username => {
+        this.props.navigation.navigate('MachineList', username)
     }
 
     render() {

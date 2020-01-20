@@ -9,7 +9,8 @@ class Printer extends React.Component {
         hourlyCost: this.props.hourlyCost,
         image: this.props.image,
         brand: this.props.brand,
-        bookMachine: this.props.bookingFunction
+        bookMachine: this.props.bookingFunction,
+        fablab: this.props.fablab
     }
 
     render() {
@@ -29,7 +30,7 @@ class Printer extends React.Component {
                     <TouchableOpacity style={styles.btnSize}><Text>XL</Text></TouchableOpacity>
                 </View>
                 <View style={styles.addToCarContainer}>
-                    <TouchableOpacity style={styles.shareButton} onPress={() => this.state.bookMachine(this.state.id)}>
+                    <TouchableOpacity style={styles.shareButton} onPress={() => this.state.bookMachine(this.state.id, this.state.fablab)}>
                         <Text style={styles.shareButtonText}>Book</Text>
                     </TouchableOpacity>
                 </View>

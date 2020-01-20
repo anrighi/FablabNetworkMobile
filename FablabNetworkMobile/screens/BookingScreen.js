@@ -1,7 +1,5 @@
 import React from 'react';
 import {View} from 'react-native';
-import MachineList from "../components/MachineList";
-import Machine from "../components/Machine";
 import BookingForm from "../components/BookingForm";
 
 class BookingScreen extends React.Component {
@@ -12,7 +10,10 @@ class BookingScreen extends React.Component {
     render() {
         return (
             <View>
-                <BookingForm/>
+                <BookingForm
+                    username={this.props.navigation.state.params.username}
+                    machineID={this.props.navigation.state.params.id}
+                />
             </View>
         );
     }
