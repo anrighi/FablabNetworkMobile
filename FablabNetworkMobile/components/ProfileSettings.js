@@ -70,9 +70,6 @@ class ProfileSettings extends React.Component {
     }
 
     render() {
-        if (!this.state.granted) {
-            return <Text>lol</Text>
-        } else {
             return (
                 <KeyboardAvoidingView>
                     <TextInput
@@ -87,12 +84,11 @@ class ProfileSettings extends React.Component {
                     />
                     <Button
                         title="Pick an image from camera roll"
-                        onPress={this._pickImage}
+                        onPress={() => this._pickImage}
                     />
                 </KeyboardAvoidingView>
             )
         }
-    }
 }
 
 export default ProfileSettings

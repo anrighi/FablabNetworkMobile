@@ -4,12 +4,13 @@ import HomeStack from "./HomeStack";
 import ReadingListStack from "./ReadingListStack";
 import SettingsStack from "./SettingsStack";
 import DashboardStack from "./DashboardStack";
+import FablabStack from "./FablabStack";
 
 const tabNavigator = createBottomTabNavigator({
     HomeStack,
     ReadingListStack,
     SettingsStack,
-    DashboardStack
+    FablabStack
 })
 
 export default tabNavigator;

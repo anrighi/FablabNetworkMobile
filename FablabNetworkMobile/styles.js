@@ -1,28 +1,9 @@
-import React, {Component} from 'react'
-import {Button, Dimensions, StyleSheet, View} from 'react-native'
-
-class Dashboard extends Component {
-
-    state = {
-        loading: true,
-        settingsNav: this.props.settingsNav
-    }
-
-    render() {
-        return (
-            <View style={styles.mainviewStyle}>
-                <Button onPress={this.state.settingsNav} title={'Profile Settings'}/>
-            </View>
-        )
-    }
-}
+import {Dimensions, StyleSheet} from "react-native";
 
 const styles = StyleSheet.create({
     cardContainer: {
         flex: 1,
     },
-
-
     container: {
         flex: 1,
         flexDirection: 'column',
@@ -130,4 +111,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Dashboard
+export default styles

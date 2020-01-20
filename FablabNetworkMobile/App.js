@@ -7,8 +7,8 @@
 *  -------------------------------------------------------------------------
 */
 
-import React, {useState} from 'react';
-import {Platform, StatusBar, StyleSheet, View} from 'react-native';
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
 import AppNavigator from './navigation/AppNavigator';
 import {Provider} from "unstated";
 import i18n from "i18n-js";
@@ -19,7 +19,7 @@ class App extends React.Component {
 
     state = {
         locale: 'it',
-        logged: false,
+        logged: true,
     }
 
     t = (scope, options) => {
@@ -67,8 +67,6 @@ class App extends React.Component {
         }
     }
 }
-
-
 
 
 const en = {

@@ -16,10 +16,14 @@ class FablabScreen extends React.Component {
         this.props.navigation.navigate('Map', coord)
     }
 
+    bookFunction = () => {
+        this.props.navigation.navigate('MachineList')
+    }
+
     render() {
         return (
             <View style={styles.container}>
-                <Fablab navFunction={this.navigationFunction}/>
+                <Fablab navFunction={this.navigationFunction} bookFunction={this.bookFunction}/>
             </View>
         )
     }
