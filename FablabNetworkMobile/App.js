@@ -13,13 +13,13 @@ import AppNavigator from './navigation/AppNavigator';
 import {Provider} from "unstated";
 import i18n from "i18n-js";
 import LoginScreen from "./screens/LoginScreen";
+import { AppearanceProvider } from 'react-native-appearance';
 
 YellowBox.ignoreWarnings([
     'Warning: componentWillMount is deprecated',
     'Warning: componentWillUpdate is deprecated',
     'Warning: componentWillReceiveProps is deprecated',
 ]);
-
 
 class App extends React.Component {
 
@@ -45,6 +45,7 @@ class App extends React.Component {
 
         if (this.state.logged) {
             return (
+                <AppearanceProvider>
                 <Provider>
                     <View style={styles.container}>
                         <AppNavigator
@@ -56,10 +57,13 @@ class App extends React.Component {
                         />
                     </View>
                 </Provider>
-            )
+                    </AppearanceProvider>
+                    )
 
         } else {
             return (
+                <AppearanceProvider>
+
                 <Provider>
                     <View style={styles.login_container}>
                         <LoginScreen
@@ -69,7 +73,8 @@ class App extends React.Component {
                         />
                     </View>
                 </Provider>
-            )
+                    </AppearanceProvider>
+                    )
         }
     }
 }
