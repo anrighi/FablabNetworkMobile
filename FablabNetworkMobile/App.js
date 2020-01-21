@@ -10,9 +10,10 @@
 import React, {useState} from 'react';
 import {Platform, StatusBar, StyleSheet, View} from 'react-native';
 import AppNavigator from './navigation/AppNavigator';
-import {Provider} from "unstated";
+import {Provider, Subscribe} from "unstated";
 import i18n from "i18n-js";
-import LoginScreen from "./screens/LoginScreen";
+import LoginPersistencyChecker from "./components/LoginPersistencyChecker";
+import { LoginPersistentContainer} from "./containers/LoginPersistentContainer"
 
 
 class App extends React.Component {
@@ -30,45 +31,50 @@ class App extends React.Component {
         this.setState({locale})
     };
 
-    setAuth = logged => {
-        this.setState({logged});
-        console.log('true');
-    };
-
     render() {
-
-        if (this.state.logged) {
-            return (
-                <Provider>
+        return (
+            <Provider>
+                <Subscribe to={[LoginPersistentContainer]}>{pcon => (
                     <View style={styles.container}>
-                        <AppNavigator
-                            screenProps={{
-                                t: this.t,
-                                locale: this.state.locale,
-                                setLocale: this.setLocale,
-                            }}
-                        />
+                        {
+                            pcon.state.logged &&
+                            <LoginPersistencyChecker
+                                toCheck={{
+                                    type: pcon.state.type,
+                                    logged: true,
+                                }}
+                                screenProps={{
+                                    t: this.t,
+                                    locale: this.state.locale,
+                                    setLocale: this.setLocale,
+                                    login: pcon.state.username,
+                                    type: pcon.state.type,
+                                }}
+                                styles={{styles: styles}}
+                            />
+                        }
+                        {
+                            !pcon.state.logged &&
+                            <LoginPersistencyChecker
+                                toCheck={{
+                                    type: 'null',
+                                    logged: false,
+                                }}
+                                screenProps={{
+                                    t: this.t,
+                                    locale: this.state.locale,
+                                    setLocale: this.setLocale,
+                                }}
+                                styles={{styles: styles}}
+                            />
+                        }
                     </View>
-                </Provider>
-            )
-
-        } else {
-            return (
-                <Provider>
-                    <View style={styles.login_container}>
-                        <LoginScreen
-                            loggedProps={{
-                                setAuth: this.setAuth,
-                            }}
-                        />
-                    </View>
-                </Provider>
-            )
-        }
+                )}
+                </Subscribe>
+            </Provider>
+        )
     }
 }
-
-
 
 
 const en = {

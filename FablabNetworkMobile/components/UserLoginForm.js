@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import {View, TextInput, Button, Text} from 'react-native';
+import {View, TextInput, Text} from 'react-native';
+import {Button} from "react-native-elements";
 import {login} from "./webServices/login";
 import {Subscribe} from "unstated";
 import {UserLoginContainer} from "../containers/UserLoginContainer"
+import {LoginPersistentContainer} from "../containers/LoginPersistentContainer";
 
 const ErrorMessage = () => (
     <Text style={{color: '#e60000'}}>Please check your credentials</Text>
@@ -18,6 +20,8 @@ class UserLoginForm extends React.Component {
         username: '',
         password: '',
         exception: false,
+        buttonToggler: 'outline',
+        persistence:UserLoginContainer,
     }
 
     async submit(p, authoriser) {
@@ -32,7 +36,7 @@ class UserLoginForm extends React.Component {
                 "{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")) {
                 isEmail = true;
             }
-
+                console.log(this.state.username);
             login(this.state.username, this.state.password, isEmail, 'user')
                 .then(
                     r => {
@@ -41,9 +45,7 @@ class UserLoginForm extends React.Component {
                         } else if (r == "passwordException") {
                             this.setState({exception: true});
                         } else {
-                            p.setLogged(r[0].username, r[0].name,
-                                r[0].surname, r[0].description, r[0].profile_photo,
-                                r[0].cover_photo, r[0].date_of_birth);
+                            p.setLogged(r[0].username, 'user', true);
 
                             console.log("Login successful");
 
@@ -59,7 +61,7 @@ class UserLoginForm extends React.Component {
 
     render() {
         return (
-            <Subscribe to={[UserLoginContainer]}>
+            <Subscribe to={[this.state.persistence]}>
                 {p => (
                     <View>
                         <TextInput
@@ -82,6 +84,30 @@ class UserLoginForm extends React.Component {
                             onPress={async () => this.submit(p, this.props.authoriser)}
                         />
 
+                        <Button
+                            icon={{
+                                name: "thumb-up",
+                                size: 15,
+                                color: "white"
+                            }}
+                            title="I wish to remain logged"
+                            type={this.state.buttonToggler}
+                            onPress={async () => {
+                                if(this.state.buttonToggler == 'outline'){
+                                    this.setState({
+                                        buttonToggler: 'solid',
+                                        persistence: LoginPersistentContainer,
+                                    })
+                                    console.log('OK_Persistence');
+                                } else if(this.state.buttonToggler == 'solid'){
+                                    this.setState({
+                                        buttonToggler: 'outline',
+                                        persistence: UserLoginContainer,
+                                    })
+                                    console.log('NO_Persistence');
+                                }
+                            }}
+                        />
                     </View>
                 )}
             </Subscribe>

@@ -11,12 +11,22 @@ export class FablabLoginContainer extends Container {
         profile_photo: '',
         phone: '',
         email: '',
+        type: '',
+        logged: '',
     }
 
-    setLogged = async (usr, name, address, lat, lon, profile_photo, phone, email) => {
+    setLogged = async (usr, type, logged) => {
 
         this.setState({
             username: usr,
+            type: type,
+            logged: logged,
+        })
+    }
+
+    setData = async (name, address, lat, lon, profile_photo, phone, email) => {
+
+        this.setState({
             name: name,
             address: address,
             lat: lat,

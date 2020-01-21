@@ -4,7 +4,7 @@ import {Button} from "react-native-elements";
 import {login} from "./webServices/login";
 import {Subscribe} from "unstated";
 import {FablabLoginContainer} from "../containers/FablabLoginContainer"
-import {FablabLoginPersistentContainer} from "../containers/FablabLoginPersistentContainer"
+import {LoginPersistentContainer} from "../containers/LoginPersistentContainer"
 
 const ErrorMessage = () => (
     <Text style={{color: '#e60000'}}>Please check your credentials</Text>
@@ -45,9 +45,7 @@ class FablabLoginForm extends React.Component {
                         } else if (r == "passwordException") {
                             this.setState({exception: true});
                         } else {
-                            p.setLogged(r[0].username, r[0].name,
-                                r[0].address, r[0].lat, r[0].lon, r[0].profile_photo,
-                                r[0].telephone, r[0].email);
+                            p.setLogged(r[0].username, 'fablab', true);
 
                             console.log("Login successful");
 
@@ -98,7 +96,7 @@ class FablabLoginForm extends React.Component {
                                 if(this.state.buttonToggler == 'outline'){
                                     this.setState({
                                         buttonToggler: 'solid',
-                                        persistence: FablabLoginPersistentContainer,
+                                        persistence: LoginPersistentContainer,
                                     })
                                     console.log('OK_Persistence');
                                 } else if(this.state.buttonToggler == 'solid'){
