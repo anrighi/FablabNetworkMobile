@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {Button, Picker, ScrollView, Text} from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import {Button, Picker, ScrollView} from 'react-native';
 import axios from "axios";
 import {getMaterials} from "./webServices/getFablabMaterials";
 import {Slider} from 'react-native-elements';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import {Appearance} from 'react-native-appearance';
 
 class BookingForm extends Component {
 
@@ -20,10 +21,25 @@ class BookingForm extends Component {
             amount: 15,
         },
         loading: true,
+        isDatePickerVisible: false,
+        setDatePickerVisibility: false,
+        isDarkModeEnabled: false
     }
 
 
     componentDidMount() {
+
+        const colorScheme = Appearance.getColorScheme();
+        console.log(colorScheme)
+        if (colorScheme === 'dark') {
+            this.setState({
+                isDarkModeEnabled: true
+            })
+        } else {
+            this.setState({
+                isDarkModeEnabled: false
+            })
+        }
 
         getMaterials(this.state.fablabUsername, this.state.machineID)
             .then(response => {
@@ -51,42 +67,44 @@ class BookingForm extends Component {
     }
 
 
-    setStartDate = (event, date) => {
-        date = date || this.state.dates.start;
-        this.setState({
-            dates: {start: date, end: this.state.dates.end}
-        });
-    }
+    showDatePicker = () => {
+        this.setState({setDatePickerVisibility: true});
+    };
 
-    setEndDate = (event, date) => {
-        date = date || this.state.dates.end;
-        this.setState({
-            dates: {start: this.state.dates.start, end: date}
-        });
-    }
+    hideDatePicker = () => {
+        this.setState({setDatePickerVisibility: false});
+    };
+
+    setStartDate = date => {
+        this.setState({dates: {start: date, end: this.state.dates.end}})
+        this.hideDatePicker();
+    };
+
+    setEndDate = date => {
+        this.setState({dates: {start: this.state.dates.start, end: date}})
+        this.hideDatePicker();
+    };
 
     render() {
         return (
             <ScrollView>
-                <Text>choose start</Text>
-                <DateTimePicker
-                    value={this.state.dates.start}
-                    minimumDate={new Date()}
-                    maximumDate={this.state.dates.end}
-                    mode={'datetime'}
-                    is24Hour={true}
-                    onChange={this.setStartDate}
-                    minuteInterval={5}
+                <Button title="Select start" onPress={this.showDatePicker}/>
+                <DateTimePickerModal
+                    isVisible={this.state.setDatePickerVisibility}
+                    isDarkModeEnabled={this.state.isDarkModeEnabled}
+                    mode="datetime"
+                    date={new Date()}
+                    onConfirm={this.setStartDate}
+                    onCancel={this.hideDatePicker}
                 />
-                <Text>choose end</Text>
-                <DateTimePicker
-                    value={this.state.dates.end}
-                    minimumDate={this.state.dates.start}
-                    maximumDate={new Date('2025-12-31')}
-                    mode={'datetime'}
-                    is24Hour={true}
-                    onChange={this.setEndDate}
-                    minuteInterval={5}
+                <Button title="Select end" onPress={this.showDatePicker}/>
+                <DateTimePickerModal
+                    isVisible={this.state.setDatePickerVisibility}
+                    isDarkModeEnabled={this.state.isDarkModeEnabled}
+                    mode="datetime"
+                    date={new Date()}
+                    onConfirm={this.setEndDate}
+                    onCancel={this.hideDatePicker}
                 />
 
                 <Picker
