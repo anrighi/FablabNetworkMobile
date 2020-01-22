@@ -50,7 +50,8 @@
     "expo-image-picker": "~8.0.1",
     "jest-expo": "^36.0.0",
     "react-native-dropdown": "0.0.6",
-    "react-native-maps": "0.26.1"
+    "react-native-maps": "0.26.1",
+    "react-native-touchable-scale": "^2.1.0"
   },
   "private": true
 }

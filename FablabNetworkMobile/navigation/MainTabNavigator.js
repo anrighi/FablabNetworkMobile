@@ -10,7 +10,8 @@ const tabNavigator = createBottomTabNavigator({
     HomeStack,
     ReadingListStack,
     SettingsStack,
-    FablabStack
+    FablabStack,
+    DashboardStack
 })
 
 export default tabNavigator;

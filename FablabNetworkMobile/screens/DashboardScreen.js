@@ -8,13 +8,8 @@ class DashboardScreen extends React.Component {
     }
 
     static navigationOptions = ({screenProps: {t}}) => ({
-        title: t('nearby')
+        title: t('Dashboard')
     });
-
-
-    navigationFunction = coord => {
-        this.props.navigation.navigate('Map', coord)
-    }
 
     render() {
         return (

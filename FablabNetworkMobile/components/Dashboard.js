@@ -1,17 +1,90 @@
 import React, {Component} from 'react'
-import {Button, Dimensions, StyleSheet, View} from 'react-native'
+import {Dimensions, StyleSheet, View} from 'react-native'
+import {Button, ListItem} from "react-native-elements";
+import TouchableScale from 'react-native-touchable-scale';
+import {Subscribe} from "unstated";
+import {UserLoginContainer} from "../containers/UserLoginContainer";
+
 
 class Dashboard extends Component {
 
     state = {
         loading: true,
-        settingsNav: this.props.settingsNav
+        settingsNav: this.props.settingsNav,
+        container: UserLoginContainer,
     }
 
     render() {
         return (
             <View style={styles.mainviewStyle}>
-                <Button onPress={this.state.settingsNav} title={'Profile Settings'}/>
+                <Subscribe to={this.state.container}>
+                    {p => (
+                        <ListItem
+                            Component={TouchableScale}
+                            friction={90}
+                            tension={100}
+                            activeScale={0.95}
+                            linearGradientProps={{
+                                colors: ['#f4ae00', '#f0f0f0'],
+                                start: [1, 0],
+                                end: [0.2, 0],
+                            }}
+                            leftIcon={{name: 'gear', type: 'evilicon', color: '#000000'}}
+                            title="Profile Settings"
+                            titleStyle={{color: 'black', fontWeight: 'bold'}}
+                            chevron={{color: 'white'}}
+                            onPress={this.state.settingsNav}
+                        />,
+                            < ListItem
+                                Component={TouchableScale}
+                                friction={90}
+                                tension={100}
+                                activeScale={0.95}
+                                linearGradientProps={{
+                                    colors: ['#f4ae00', '#f0f0f0'],
+                                    start: [1, 0],
+                                    end: [0.2, 0],
+                                }}
+                                leftIcon={{name: 'gear', type: 'evilicon', color: '#000000'}}
+                                title="My Projects"
+                                titleStyle={{color: 'black', fontWeight: 'bold'}}
+                                chevron={{color: 'white'}}
+                                onPress={this.state.settingsNav}
+                            />,
+                            < ListItem
+                                Component={TouchableScale}
+                                friction={90}
+                                tension={100}
+                                activeScale={0.95}
+                                linearGradientProps={{
+                                    colors: ['#f4ae00', '#f0f0f0'],
+                                    start: [1, 0],
+                                    end: [0.2, 0],
+                                }}
+                                leftIcon={{name: 'gear', type: 'evilicon', color: '#000000'}}
+                                title="MyMembership"
+                                titleStyle={{color: 'black', fontWeight: 'bold'}}
+                                chevron={{color: 'white'}}
+                                onPress={this.state.settingsNav}
+                            />,
+                            < ListItem
+                                Component={TouchableScale}
+                                friction={90}
+                                tension={100}
+                                activeScale={0.95}
+                                linearGradientProps={{
+                                    colors: ['#f4ae00', '#f0f0f0'],
+                                    start: [1, 0],
+                                    end: [0.2, 0],
+                                }}
+                                leftIcon={{name: 'gear', type: 'evilicon', color: '#000000'}}
+                                title="Log out"
+                                titleStyle={{color: 'black', fontWeight: 'bold'}}
+                                chevron={{color: 'white'}}
+                                onPress={this.state.settingsNav}
+                            />
+                    )}
+                </Subscribe>
             </View>
         )
     }
