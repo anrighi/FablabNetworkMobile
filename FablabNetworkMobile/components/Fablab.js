@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import {ImageBackground, Linking, ScrollView, Text, TouchableOpacity, View} from 'react-native'
-import {getFablabData} from "./webServices/getFablabData";
+import {ImageBackground, Linking, ScrollView, Text, TouchableOpacity, View, ActivityIndicator} from 'react-native'
 import styles from '../styles'
+import {getFablabData} from "./webServices/fablabGetters";
 
 class Fablab extends Component {
 
@@ -70,7 +70,7 @@ class Fablab extends Component {
 
     render() {
         if (this.state.loading) {
-            return <Text>loading</Text>
+            return <ActivityIndicator size="large" color="#0000ff" />
         } else {
             return (
                 <View style={styles.mainviewStyle}>

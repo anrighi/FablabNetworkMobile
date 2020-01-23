@@ -1,6 +1,6 @@
 import React from 'react';
 import {ScrollView, StyleSheet, Text} from 'react-native';
-import {getFablabMachines} from "./webServices/getFablabMachines";
+import {getFablabMachines} from "./webServices/fablabGetters";
 import {ListItem} from "react-native-elements";
 
 class MachineList extends React.Component {

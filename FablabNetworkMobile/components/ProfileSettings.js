@@ -31,7 +31,7 @@ class ProfileSettings extends React.Component {
         data.append('input', this.state.email);
 
         return await axios.post(url, data)
-            .then(res => console.log(res.data))
+            .then(res => console.log(res))
             .catch(err => console.log(err));
     }
 

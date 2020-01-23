@@ -23,12 +23,6 @@ class Printer extends React.Component {
                     <Text style={styles.brand}>{this.state.brand}</Text>
                     <Text style={styles.price}>€ {this.state.hourlyCost} per hour</Text>
                 </View>
-                <View style={styles.contentSize}>
-                    <TouchableOpacity style={styles.btnSize}><Text>S</Text></TouchableOpacity>
-                    <TouchableOpacity style={styles.btnSize}><Text>M</Text></TouchableOpacity>
-                    <TouchableOpacity style={styles.btnSize}><Text>L</Text></TouchableOpacity>
-                    <TouchableOpacity style={styles.btnSize}><Text>XL</Text></TouchableOpacity>
-                </View>
                 <View style={styles.addToCarContainer}>
                     <TouchableOpacity style={styles.shareButton} onPress={() => this.state.bookMachine(this.state.id, this.state.fablab)}>
                         <Text style={styles.shareButtonText}>Book</Text>
