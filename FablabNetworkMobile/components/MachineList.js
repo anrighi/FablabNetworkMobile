@@ -46,6 +46,7 @@ class MachineList extends React.Component {
                     }
                     {
                         this.state.machines.map((machine, idx) => {
+                            console.log(machine)
                             return (
                                 <ListItem
                                     key={idx}
@@ -54,7 +55,7 @@ class MachineList extends React.Component {
                                         rounded: true,
                                         source: machine.image
                                     }}
-                                    onPress={() => this.state.machineFunction(machine)}
+                                    onPress={() => this.state.machineFunction(machine, this.state.fablabUsername)}
                                 />
                             );
                         })

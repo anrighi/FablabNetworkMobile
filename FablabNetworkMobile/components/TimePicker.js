@@ -12,7 +12,8 @@ class TimePicker extends Component {
         },
         visibility: {start: false, end: false},
         isDarkModeEnabled: false,
-        updateFunction: this.props.update
+        updateFunction: this.props.update,
+        type: this.props.type
     }
 
     componentDidMount() {
@@ -55,7 +56,7 @@ class TimePicker extends Component {
                 <DateTimePickerModal
                     isVisible={this.state.visibility.start}
                     isDarkModeEnabled={this.state.isDarkModeEnabled}
-                    mode="datetime"
+                    mode={this.state.type}
                     date={this.state.dates.start}
                     onConfirm={this.setStartDate}
                     onCancel={this.hideDatePicker}
@@ -66,7 +67,7 @@ class TimePicker extends Component {
                 <DateTimePickerModal
                     isVisible={this.state.visibility.end}
                     isDarkModeEnabled={this.state.isDarkModeEnabled}
-                    mode="datetime"
+                    mode={this.state.type}
                     date={this.state.dates.end}
                     onConfirm={this.setEndDate}
                     onCancel={this.hideDatePicker}

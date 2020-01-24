@@ -13,6 +13,7 @@ class BookingScreen extends React.Component {
                 <BookingForm
                     username={this.props.navigation.state.params.username}
                     machineID={this.props.navigation.state.params.id}
+                    type={this.props.navigation.state.params.type}
                 />
             </View>
         );

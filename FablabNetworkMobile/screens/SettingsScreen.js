@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, Picker, Button} from "react-native";
+import {View} from "react-native";
 
 class SettingsScreen extends React.Component {
 
@@ -16,7 +16,7 @@ class SettingsScreen extends React.Component {
         let {t, setLocale} = this.props.screenProps;
 
         return (
-            <View>
+            <View style={{flex: 1}}>
                 <Picker
                     selectedValue={this.state.language}
                     onValueChange={itemValue =>
@@ -35,3 +35,7 @@ class SettingsScreen extends React.Component {
 }
 
 export default SettingsScreen
+
+/*
+
+ */

@@ -8,7 +8,7 @@ class PrinterScreen extends React.Component {
     });
 
     book = (id, username) => {
-        this.props.navigation.navigate('Book', {id, username})
+        this.props.navigation.navigate('Book', {id, username, type: 'printer'})
     }
 
     render() {
