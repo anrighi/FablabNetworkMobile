@@ -14,77 +14,40 @@ class Dashboard extends Component {
         container: UserLoginContainer,
     }
 
+
     render() {
+
+        const list = [
+            {
+                title: 'MyBalance',
+                icon: 'euro-symbol'
+            },
+            {
+                title: 'MyMembership',
+                icon: 'card-membership'
+            },
+            {
+                title: 'Projects',
+                icon: 'work'
+            },
+            {
+                title: 'Logout',
+                icon: 'exit-to-app'
+            },
+        ];
         return (
             <View style={styles.mainviewStyle}>
-                <Subscribe to={this.state.container}>
-                    {p => (
+                {
+                    list.map((item, i) => (
                         <ListItem
-                            Component={TouchableScale}
-                            friction={90}
-                            tension={100}
-                            activeScale={0.95}
-                            linearGradientProps={{
-                                colors: ['#f4ae00', '#f0f0f0'],
-                                start: [1, 0],
-                                end: [0.2, 0],
-                            }}
-                            leftIcon={{name: 'gear', type: 'evilicon', color: '#000000'}}
-                            title="Profile Settings"
-                            titleStyle={{color: 'black', fontWeight: 'bold'}}
-                            chevron={{color: 'white'}}
-                            onPress={this.state.settingsNav}
-                        />,
-                            < ListItem
-                                Component={TouchableScale}
-                                friction={90}
-                                tension={100}
-                                activeScale={0.95}
-                                linearGradientProps={{
-                                    colors: ['#f4ae00', '#f0f0f0'],
-                                    start: [1, 0],
-                                    end: [0.2, 0],
-                                }}
-                                leftIcon={{name: 'gear', type: 'evilicon', color: '#000000'}}
-                                title="My Projects"
-                                titleStyle={{color: 'black', fontWeight: 'bold'}}
-                                chevron={{color: 'white'}}
-                                onPress={this.state.settingsNav}
-                            />,
-                            < ListItem
-                                Component={TouchableScale}
-                                friction={90}
-                                tension={100}
-                                activeScale={0.95}
-                                linearGradientProps={{
-                                    colors: ['#f4ae00', '#f0f0f0'],
-                                    start: [1, 0],
-                                    end: [0.2, 0],
-                                }}
-                                leftIcon={{name: 'gear', type: 'evilicon', color: '#000000'}}
-                                title="MyMembership"
-                                titleStyle={{color: 'black', fontWeight: 'bold'}}
-                                chevron={{color: 'white'}}
-                                onPress={this.state.settingsNav}
-                            />,
-                            < ListItem
-                                Component={TouchableScale}
-                                friction={90}
-                                tension={100}
-                                activeScale={0.95}
-                                linearGradientProps={{
-                                    colors: ['#f4ae00', '#f0f0f0'],
-                                    start: [1, 0],
-                                    end: [0.2, 0],
-                                }}
-                                leftIcon={{name: 'gear', type: 'evilicon', color: '#000000'}}
-                                title="Log out"
-                                titleStyle={{color: 'black', fontWeight: 'bold'}}
-                                chevron={{color: 'white'}}
-                                onPress={this.state.settingsNav}
-                            />
-                    )}
-                </Subscribe>
+                            key={i}
+                            title={item.title}
+                            leftIcon={{name: item.icon}}
+                            bottomDivider
+                            chevron
+                        />
+                    ))
+                }
             </View>
         )
     }
