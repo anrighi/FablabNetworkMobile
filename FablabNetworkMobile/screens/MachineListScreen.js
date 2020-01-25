@@ -7,19 +7,16 @@ class MachineListScreen extends React.Component {
         title: t('machineList')
     });
 
-    printerFunction = (printerData, fablabUsername) => {
-        this.props.navigation.navigate('Printer', {printerData, fablabUsername})
-    }
-
-    machineFunction = (machineData, fablabUsername) => {
-        this.props.navigation.navigate('Machine', {machineData, fablabUsername})
+    navFunction = (type, machineData, fablabUsername) => {
+        console.log(machineData)
+        this.props.navigation.navigate('Machine', {type, machineData, fablabUsername})
     }
 
 
     render() {
         return (
             <View>
-                <MachineList machineFunction={this.machineFunction} printerFunction={this.printerFunction} fablab={this.props.navigation.state.params}/>
+                <MachineList navFunction={this.navFunction} fablab={this.props.navigation.state.params}/>
             </View>
         );
     }

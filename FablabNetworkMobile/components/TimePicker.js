@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Button, Text, View} from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import {Appearance} from 'react-native-appearance';
+import moment from "moment";
 
 class TimePicker extends Component {
 
@@ -61,7 +62,8 @@ class TimePicker extends Component {
                     onConfirm={this.setStartDate}
                     onCancel={this.hideDatePicker}
                 />
-                <Text>{this.state.dates.start + ''}</Text>
+                <Text>{this.state.type === 'datetime' && moment(this.state.dates.start).format('DD-MM-YYYY hh:mm')}</Text>
+                <Text>{this.state.type === 'date' && moment(this.state.dates.start).format('DD-MM-YYYY')}</Text>
 
                 <Button title="Select end" onPress={() => this.showDatePicker('end')}/>
                 <DateTimePickerModal
@@ -72,8 +74,8 @@ class TimePicker extends Component {
                     onConfirm={this.setEndDate}
                     onCancel={this.hideDatePicker}
                 />
-                <Text>{this.state.dates.end + ''}</Text>
-
+                <Text>{this.state.type === 'datetime' && moment(this.state.dates.end).format('DD-MM-YYYY hh:mm')}</Text>
+                <Text>{this.state.type === 'date' && moment(this.state.dates.end).format('DD-MM-YYYY')}</Text>
             </View>
         );
     }

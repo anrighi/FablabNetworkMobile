@@ -1,5 +1,5 @@
 import {Container} from "unstated";
-import {bookPrinter} from "../components/webServices/booking";
+import {bookMachine, bookPrinter} from "../components/webServices/booking";
 import React from "react";
 
 export class BookingContainer extends Container {
@@ -44,11 +44,11 @@ export class BookingContainer extends Container {
     }
 
     bookPrinter = (machineID) => {
-        if (machineID === undefined || this.state.dates.start === undefined || this.state.dates.end === undefined || this.state.selectedMaterial.materialId === undefined || this.state.selectedMaterial.amount === undefined) {
-            console.log('undefined error')
-        } else {
-            bookPrinter(machineID, this.state.dates.start, this.state.dates.end, this.state.selectedMaterial.materialId, this.state.selectedMaterial.amount)
-        }
+        bookPrinter(machineID, this.state.dates.start, this.state.dates.end, this.state.selectedMaterial.materialId, this.state.selectedMaterial.amount)
+    }
+
+    bookMachine = (machineID) => {
+        bookMachine(machineID, this.state.dates.start, this.state.dates.end, this.state.selectedMaterial.materialId, this.state.selectedMaterial.amount)
     }
 
 

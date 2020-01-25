@@ -17,54 +17,46 @@ class BookingForm extends Component {
     }
 
     componentDidMount() {
-        getMaterials(this.state.fablabUsername, this.state.machineID)
-            .then(response => {
-                this.setState({materials: response, loading: false})
-            })
+        if (this.props.type === 'printer') {
+            getMaterials(this.state.fablabUsername, this.state.machineID)
+                .then(response => {
+                    this.setState({materials: response, loading: false})
+                })
+        } else {
+            this.setState({loading: false})
+        }
     }
 
     render() {
         if (this.state.loading) {
             return <ActivityIndicator size="large" color="#0000ff"/>
-        } else if (this.props.type === 'printer') {
-            return (
-                <Subscribe to={[BookingContainer]}>{
-                    props =>
-                        <View>
-                            <TimePicker update={props.updateDate} type={'datetime'}/>
-                            <MaterialPicker
-                                update={props.updateMaterial}
-                                materials={this.state.materials}
-                            />
-                            <Button
-                                onPress={() => props.bookPrinter(this.state.machineID)}
-                                title={'book'}/>
-                        </View>
-                }
-                </Subscribe>
-            );
-
         } else {
             return (
                 <Subscribe to={[BookingContainer]}>{
                     props =>
                         <View>
-                            <TimePicker update={props.updateDate} type={'date'}/>
-                            <MaterialPicker
-                                update={props.updateMaterial}
-                                materials={this.state.materials}
-                            />
-                            <Button
-                                onPress={() => props.bookPrinter(this.state.machineID)}
-                                title={'book'}/>
+                            <TimePicker update={props.updateDate}
+                                        type={this.props.type === 'printer' ? 'datetime' : 'date'}/>
+                            {this.props.type === 'printer' ?
+                                <View>
+                                    <MaterialPicker
+                                        update={props.updateMaterial}
+                                        materials={this.state.materials}
+                                    />
+                                    <Button
+                                        onPress={() => props.bookPrinter(this.state.machineID)}
+                                        disabled={this.state.materials.length < 1}
+                                        title={'Book'}/>
+                                </View> :
+                                <Button
+                                    onPress={() => props.bookMachine(this.state.machineID)}
+                                    title={'Book'}/>
+                            }
                         </View>
                 }
                 </Subscribe>
             );
-
-
         }
-
     }
 }
 

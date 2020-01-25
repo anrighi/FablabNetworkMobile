@@ -13,6 +13,19 @@ class MaterialPicker extends Component {
         },
     }
 
+    componentDidMount() {
+
+        if (this.state.materials.length > 0) {
+            this.setState({
+                selectedMaterial: {
+                    materialId: this.props.materials[0].id,
+                    amount: this.props.materials[0].max / 2,
+                    maxValue: this.props.materials[0].max,
+                },
+            })
+        }
+    }
+
     updateMaterial = value => {
         let max = 0
         const array = this.state.materials

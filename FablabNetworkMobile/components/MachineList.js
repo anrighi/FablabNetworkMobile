@@ -9,8 +9,7 @@ class MachineList extends React.Component {
         loading: true,
         printers: [],
         machines: [],
-        machineFunction: this.props.machineFunction,
-        printerFunction: this.props.printerFunction,
+        navFunction: this.props.navFunction,
         fablabUsername: this.props.fablab
     }
 
@@ -39,14 +38,13 @@ class MachineList extends React.Component {
                                         rounded: true,
                                         source: printer.image
                                     }}
-                                    onPress={() => this.state.printerFunction(printer, this.state.fablabUsername)}
+                                    onPress={() => this.state.navFunction('printer', printer, this.state.fablabUsername)}
                                 />
                             );
                         })
                     }
                     {
                         this.state.machines.map((machine, idx) => {
-                            console.log(machine)
                             return (
                                 <ListItem
                                     key={idx}
@@ -55,7 +53,7 @@ class MachineList extends React.Component {
                                         rounded: true,
                                         source: machine.image
                                     }}
-                                    onPress={() => this.state.machineFunction(machine, this.state.fablabUsername)}
+                                    onPress={() => this.state.navFunction('machine', machine, this.state.fablabUsername)}
                                 />
                             );
                         })

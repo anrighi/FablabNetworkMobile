@@ -6,7 +6,6 @@ import MapScreen from "../screens/MapScreen";
 import FablabScreen from "../screens/FablabScreen";
 import MachineListScreen from "../screens/MachineListScreen";
 import MachineScreen from "../screens/MachineScreen";
-import PrinterScreen from "../screens/PrinterScreen";
 import BookingScreen from "../screens/BookingScreen";
 
 const FablabStack = createStackNavigator(
@@ -15,7 +14,6 @@ const FablabStack = createStackNavigator(
         Map: MapScreen,
         MachineList: MachineListScreen,
         Machine: MachineScreen,
-        Printer: PrinterScreen,
         Book: BookingScreen
     });
 
