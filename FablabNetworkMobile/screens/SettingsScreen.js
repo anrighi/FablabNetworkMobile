@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from "react-native";
+import {View, Button, Picker} from "react-native";
 
 class SettingsScreen extends React.Component {
 
@@ -36,6 +36,3 @@ class SettingsScreen extends React.Component {
 
 export default SettingsScreen
 
-/*
-
- */

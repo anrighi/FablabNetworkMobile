@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
         position: 'relative',
     },
     coverImage: {
-        height: Dimensions.get('window').width * (3 / 4),
+        height: Dimensions.get('window').width * (4 / 9),
         width: Dimensions.get('window').width,
     },
     headerContainer: {
@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
     scroll: {
         backgroundColor: '#FFF',
         flex: 1,
-        marginBottom: 55,
     },
     productRow: {
         margin: 25,

@@ -13,7 +13,7 @@ import AppNavigator from './navigation/AppNavigator';
 import {Provider} from "unstated";
 import i18n from "i18n-js";
 import LoginScreen from "./screens/LoginScreen";
-import { AppearanceProvider } from 'react-native-appearance';
+import {AppearanceProvider} from 'react-native-appearance';
 
 YellowBox.ignoreWarnings([
     'Warning: componentWillMount is deprecated',
@@ -47,35 +47,35 @@ class App extends React.Component {
         if (this.state.logged) {
             return (
                 <AppearanceProvider>
-                <Provider>
-                    <View style={styles.container}>
-                        <AppNavigator
-                            screenProps={{
-                                t: this.t,
-                                locale: this.state.locale,
-                                setLocale: this.setLocale,
-                            }}
-                        />
-                    </View>
-                </Provider>
-                    </AppearanceProvider>
-                    )
+                    <Provider>
+                        <View style={styles.container}>
+                            <AppNavigator
+                                screenProps={{
+                                    t: this.t,
+                                    locale: this.state.locale,
+                                    setLocale: this.setLocale,
+                                }}
+                            />
+                        </View>
+                    </Provider>
+                </AppearanceProvider>
+            )
 
         } else {
             return (
                 <AppearanceProvider>
 
-                <Provider>
-                    <View style={styles.login_container}>
-                        <LoginScreen
-                            loggedProps={{
-                                setAuth: this.setAuth,
-                            }}
-                        />
-                    </View>
-                </Provider>
-                    </AppearanceProvider>
-                    )
+                    <Provider>
+                        <View style={styles.login_container}>
+                            <LoginScreen
+                                loggedProps={{
+                                    setAuth: this.setAuth,
+                                }}
+                            />
+                        </View>
+                    </Provider>
+                </AppearanceProvider>
+            )
         }
     }
 }

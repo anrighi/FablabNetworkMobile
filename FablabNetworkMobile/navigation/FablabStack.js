@@ -11,7 +11,7 @@ import BookingScreen from "../screens/BookingScreen";
 const FablabStack = createStackNavigator(
     {
         Fab: FablabScreen,
-        Map: MapScreen,
+        MapDetail: MapScreen,
         MachineList: MachineListScreen,
         Machine: MachineScreen,
         Book: BookingScreen

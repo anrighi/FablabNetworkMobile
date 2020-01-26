@@ -38,3 +38,16 @@ export const bookMachine = async (id, start, end) => {
         .then(res => console.log(res.data))
         .catch(err => console.log(err));
 }
+
+export const becomeMember = async (username, fabUsername) => {
+
+    const url = "http://www.fablabnetwork.tk/php/become-member.php";
+    const data = new FormData();
+
+    data.append("user", username);
+    data.append("fablab", fabUsername);
+
+    return await axios.post(url, data)
+        .then(res => console.log(res.data))
+        .catch(err => console.log(err));
+}

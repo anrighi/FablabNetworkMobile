@@ -1,19 +1,21 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import Fablab from "../components/Fablab";
+import { HeaderBackButton } from 'react-navigation';
 
 class FablabScreen extends React.Component {
     state = {
         focused: true
     }
 
-    static navigationOptions = ({screenProps: {t}}) => ({
-        title: t('nearby')
+    static navigationOptions = ({screenProps: {t}, navigation}) => ({
+        title: t('nearby'),
+        headerLeft: <HeaderBackButton onPress={() => navigation.navigate('FablabList')} />
     });
 
 
     navigationFunction = coord => {
-        this.props.navigation.navigate('Map', coord)
+        this.props.navigation.navigate('MapDetail', coord)
     }
 
     bookFunction = username => {
@@ -23,7 +25,11 @@ class FablabScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Fablab navFunction={this.navigationFunction} bookFunction={this.bookFunction}/>
+                <Fablab
+                    data={this.props.navigation.state.params.fablab}
+                    navFunction={this.navigationFunction}
+                    bookFunction={this.bookFunction}
+                />
             </View>
         )
     }

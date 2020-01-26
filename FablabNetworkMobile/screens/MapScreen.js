@@ -6,30 +6,15 @@ export default class MapScreen extends React.Component {
     static navigationOptions = {
         title: 'Map',
     };
-/*
-    state = {
-        focused: false
-    }
 
-    didBlurSubscription = this.props.navigation.addListener(
-        'didBlur',
-        payload => {
-            this.setState({focused: false})
-        }
-    );
-
-    willFocusSubscription = this.props.navigation.addListener(
-        'willFocus',
-        payload => {
-            this.setState({focused: true})
-        }
-    );
-*/
     render() {
         return (
             <View style={styles.container}>
-                <Map totalView={this.props.navigation.state.params.total}
-                     coord={this.props.navigation.state.params.coord}/>
+                <Map
+                    fablabs={this.props.navigation.state.params.fablabs}
+                    totalView={this.props.navigation.state.params.total}
+                    coord={this.props.navigation.state.params.coord}
+                />
             </View>
         );
     }

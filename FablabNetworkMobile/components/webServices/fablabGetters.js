@@ -12,7 +12,7 @@ export const getFablabData = async (username) => {
                 address: response[0].address,
                 telephone: response[0].telephone,
                 coord: {lat: Number(response[0].lat), lon: Number(response[0].lon)},
-                email: response[0].email
+                email: response[0].email,
             }
 
         })
@@ -90,4 +90,36 @@ export const getMaterials = async (username, printerid) => {
         .catch(function (error) {
             console.log(error);
         });
+}
+
+export const getFablabs = async () => {
+    const url = "http://fablabnetwork.tk/php/get-fablabs.php";
+    return await fetch(url)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (response) {
+
+            const fablabs = response;
+            let array = []
+
+            for (let i = 0; i < fablabs.length; i++) {
+
+                array = [...array, {
+                    name: fablabs[i].name,
+                    username: fablabs[i].username,
+                    image: {uri: 'http://www.fablabnetwork.tk/' + fablabs[i].image},
+                    coord: {lat: Number(fablabs[i].lat), lon: Number(fablabs[i].lon)},
+                    address: fablabs[i].address,
+                    telephone: fablabs[i].telephone,
+                    email: fablabs[i].email,
+                }];
+            }
+
+            return array
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
 }

@@ -1,16 +1,20 @@
 import {createStackNavigator} from "react-navigation";
-import HomeScreen from "../screens/HomeScreen";
 import TabBarIcon from "../components/TabBarIcon";
 import {Platform} from "react-native";
 import React from "react";
+import ProjectScreen from "../screens/ProjectScreen";
+import ProjectListScreen from "../screens/ProjectListScreen";
+import UserScreen from "../screens/UserScreen";
 
-const HomeStack = createStackNavigator(
+const UserStack = createStackNavigator(
     {
-        Home: HomeScreen,
+        User: UserScreen,
+        Proj: ProjectScreen,
+        ProjList: ProjectListScreen,
     }
 );
 
-HomeStack.navigationOptions = {
+UserStack.navigationOptions = {
     tabBarLabel: 'Home',
     tabBarIcon: ({focused}) => (
         <TabBarIcon
@@ -24,6 +28,6 @@ HomeStack.navigationOptions = {
     ),
 };
 
-HomeStack.path = '';
+UserStack.path = '';
 
-export default HomeStack
+export default UserStack

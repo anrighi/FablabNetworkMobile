@@ -1,10 +1,8 @@
-import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
-import {Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import WikiList from "../components/WikiList";
-import Fablab from "../components/Fablab";
+import {StyleSheet, View} from 'react-native';
+import User from "../components/User";
 
-class HomeScreen extends React.Component {
+class UserScreen extends React.Component {
 
 
     state = {
@@ -31,15 +29,19 @@ class HomeScreen extends React.Component {
         title: t('nearby')
     });
 
+    navFunction = (user) => {
+        this.props.navigation.navigate('ProjList', {user: user})
+    }
+
     render() {
-
         return (
-
-
-                <View style={styles.container}>
-
-                </View>
-        )    }
+            <View style={styles.container}>
+                <User
+                    navFunction={this.navFunction}
+                />
+            </View>
+        )
+    }
 }
 
 const styles = StyleSheet.create({
@@ -51,4 +53,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default HomeScreen
+export default UserScreen

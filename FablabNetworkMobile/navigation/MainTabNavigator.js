@@ -1,16 +1,14 @@
 import React from 'react';
 import {createBottomTabNavigator} from 'react-navigation';
-import HomeStack from "./HomeStack";
-import ReadingListStack from "./ReadingListStack";
 import SettingsStack from "./SettingsStack";
 import DashboardStack from "./DashboardStack";
-import FablabStack from "./FablabStack";
+import ListSwitch from "./ListSwitch";
+import UserStack from "./UserStack";
 
 const tabNavigator = createBottomTabNavigator({
-    HomeStack,
-    ReadingListStack,
+    UserStack,
+    ListSwitch,
     SettingsStack,
-    FablabStack,
     DashboardStack
 })
 

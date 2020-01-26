@@ -1,27 +1,20 @@
 import React from 'react';
 import MapView, {Marker} from 'react-native-maps';
 import {Dimensions, StyleSheet, Text} from 'react-native';
-import {getFablab} from './webServices/getFablabs'
 
 export default class Map extends React.Component {
 
     state = {
-        fablabs: [],
+        fablabs: this.props.fablabs,
         total: this.props.totalView,
         loading: true
     }
 
     componentDidMount() {
-
-        if (typeof this.state.total !== 'undefined') {
-            getFablab().then(response => {
-                this.setState({
-                    fablabs: response
-                })
-            }).then(() => this.setState({loading: false}))
-        } else {
+        if (typeof this.state.total === 'undefined') {
             this.setState({fablabs: [{coord: this.props.coord}], loading: false})
         }
+        this.setState({loading: false})
     }
 
     render() {
