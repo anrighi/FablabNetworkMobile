@@ -64,7 +64,6 @@ class App extends React.Component {
         } else {
             return (
                 <AppearanceProvider>
-
                     <Provider>
                         <View style={styles.login_container}>
                             <LoginScreen

@@ -1,12 +1,13 @@
 import React from 'react';
 import {createBottomTabNavigator} from 'react-navigation';
 import SettingsStack from "./SettingsStack";
-import DashboardStack from "./DashboardStack";
+import DashboardSwitch from "./DashboardSwitch";
 import FablabSwitch from "./FablabSwitch";
 import EventSwitch from "./EventSwitch";
 
+
 const tabNavigator = createBottomTabNavigator({
-    DashboardStack,
+    DashboardSwitch,
     FablabSwitch,
     EventSwitch,
     SettingsStack,

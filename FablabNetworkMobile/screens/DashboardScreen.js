@@ -11,10 +11,14 @@ class DashboardScreen extends React.Component {
         title: t('Dashboard')
     });
 
+    navFunction = (where) => {
+        this.props.navigation.navigate(where);
+    }
+
     render() {
         return (
             <View style={styles.container}>
-                <Dashboard settingsNav={() => this.props.navigation.navigate('ProfileSettings')}/>
+                <Dashboard navFunction={this.navFunction}/>
             </View>
         )
     }

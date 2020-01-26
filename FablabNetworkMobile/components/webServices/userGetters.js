@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const getUserData = async (username) => {
     const url = "http://fablabnetwork.tk/php/get-user-profile.php?user=" + username;
     return await fetch(url)
@@ -20,6 +22,27 @@ export const getUserData = async (username) => {
         });
 
 }
+
+export const getMembership = async (username) => {
+
+    const url = "http://fablabnetwork.tk/php/get-memberships.php";
+    const data = new FormData();
+
+    data.append('username', username);
+
+    return await axios.post(url,data).then(res => {
+
+        if (res.data == "No membership found") {
+            return "membershipException";
+        } else if (res.data == "Unknown error") {
+            return "nullParamException";
+        } else {
+            return res.data;
+        }
+    })
+        .catch(err => console.log(err));
+
+};
 
 export const getProjects = async (username) => {
 

@@ -4,14 +4,29 @@ import {Button, ListItem} from "react-native-elements";
 import TouchableScale from 'react-native-touchable-scale';
 import {Subscribe} from "unstated";
 import {UserLoginContainer} from "../containers/UserLoginContainer";
+import {Icon} from "react-native-elements"
+import Text from "react-native-web/src/exports/Text";
 
 
 class Dashboard extends Component {
 
     state = {
         loading: true,
-        settingsNav: this.props.settingsNav,
         container: UserLoginContainer,
+    };
+
+    openPage(index) {
+        if (index = 0) {
+            console.log(index)
+            this.props.navFunction('BalanceScreen');
+        } else if (index = 1) {
+            this.props.navFunction('MembershipScreen');
+        } else if (index = 2) {
+            this.props.navFunction('ProjectScreen');
+        } else if (index = 3) {
+            console.log("LOGGED OUT")
+            //TODO: METTERE LOG OUT
+        }
     }
 
 
@@ -20,32 +35,40 @@ class Dashboard extends Component {
         const list = [
             {
                 title: 'MyBalance',
-                icon: 'euro-symbol'
+                icon: 'money',
+                key: 0,
             },
             {
                 title: 'MyMembership',
-                icon: 'card-membership'
+                icon: 'credit-card',
+                key: 1,
             },
             {
                 title: 'Projects',
-                icon: 'work'
+                icon: 'puzzle-piece',
+                key: 2,
             },
             {
                 title: 'Logout',
-                icon: 'exit-to-app'
+                icon: 'sign-out',
+                key: 3,
             },
         ];
+
+
         return (
             <View style={styles.mainviewStyle}>
                 {
-                    list.map((item, i) => (
-                        <ListItem
-                            key={i}
-                            title={item.title}
-                            leftIcon={{name: item.icon}}
-                            bottomDivider
-                            chevron
-                        />
+                    list.map((item) => (
+                        <View>
+                            <Icon
+                                raised
+                                name={item.icon}
+                                type='font-awesome'
+                                color='#f50'
+                                onPress={() => this.openPage(item.key)}
+                            />
+                        </View>
                     ))
                 }
             </View>
