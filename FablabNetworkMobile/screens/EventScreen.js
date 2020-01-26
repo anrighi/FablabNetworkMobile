@@ -1,16 +1,14 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import Fablab from "../components/Fablab";
-import { HeaderBackButton } from 'react-navigation';
+import Event from "../components/Event";
 
-class FablabScreen extends React.Component {
+class EventScreen extends React.Component {
     state = {
         focused: true
     }
 
     static navigationOptions = ({screenProps: {t}, navigation}) => ({
         title: t('nearby'),
-        headerLeft: <HeaderBackButton onPress={() => navigation.navigate('FablabList')} />
     });
 
 
@@ -18,21 +16,18 @@ class FablabScreen extends React.Component {
         this.props.navigation.navigate('MapDetail', coord)
     }
 
-    bookFunction = username => {
-        this.props.navigation.navigate('MachineList', username)
-    }
-
-    eventFunction = fabUsername => {
-        this.props.navigation.navigate('EventList', {fabUsername})
+    fablabFunction = username => {
+        this.props.navigation.navigate('Fab', username)
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <Fablab
-                    data={this.props.navigation.state.params.fablab}
+                <Event
+                    data={this.props.navigation.state.params.eventData}
+                    username={this.props.navigation.state.params.fabUser}
                     navFunction={this.navigationFunction}
-                    eventFunction={this.eventFunction}
+                    fabFunction={this.fablabFunction}
                     bookFunction={this.bookFunction}
                 />
             </View>
@@ -49,4 +44,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default FablabScreen
+export default EventScreen

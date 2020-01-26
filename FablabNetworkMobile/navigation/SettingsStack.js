@@ -3,10 +3,12 @@ import SettingsScreen from "../screens/SettingsScreen";
 import TabBarIcon from "../components/TabBarIcon";
 import {Platform} from "react-native";
 import React from "react";
+import LanguageScreen from "../screens/LanguageScreen";
 
 const SettingsStack = createStackNavigator(
     {
         Settings: SettingsScreen,
+        Language: LanguageScreen,
     }
 );
 

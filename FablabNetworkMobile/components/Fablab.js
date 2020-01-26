@@ -27,7 +27,7 @@ class Fablab extends Component {
                             raised
                             name='person-add'
                             color='#f50'
-                            onPress={() => becomeMember('giorgio', this.state.username)}/>
+                            onPress={() => becomeMember('giorgio', this.state.fablab.username)}/>
 
                     </View>
                     <Text style={styles.descriptionText}>{this.state.fablab.address}</Text>
@@ -53,6 +53,11 @@ class Fablab extends Component {
                             name='email'
                             color='#f50'
                             onPress={() => Linking.openURL('mailto:' + this.state.fablab.email)}/>
+                        <Icon
+                            raised
+                            name='chevron-left'
+                            color='#f50'
+                            onPress={() => this.props.eventFunction(this.state.fablab.username)}/>
                     </View>
                 </View>
             </View>

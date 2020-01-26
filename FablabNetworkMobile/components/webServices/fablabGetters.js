@@ -1,27 +1,3 @@
-export const getFablabData = async (username) => {
-    const url = "http://fablabnetwork.tk/php/get-fablabs.php?us=" + username;
-    return await fetch(url)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (response) {
-
-            return {
-                name: response[0].name,
-                image: {uri: 'http://www.fablabnetwork.tk/' + response[0].image},
-                address: response[0].address,
-                telephone: response[0].telephone,
-                coord: {lat: Number(response[0].lat), lon: Number(response[0].lon)},
-                email: response[0].email,
-            }
-
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-
-}
-
 export const getFablabMachines = async (username) => {
     const url = "http://fablabnetwork.tk/php/get-machines.php?fablab=" + username;
     return await fetch(url)
@@ -113,6 +89,46 @@ export const getFablabs = async () => {
                     address: fablabs[i].address,
                     telephone: fablabs[i].telephone,
                     email: fablabs[i].email,
+                }];
+            }
+
+            return array
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
+}
+
+export const getEvents = async (username) => {
+
+    let url = ''
+
+    if (username.length > 0) {
+        url = "http://fablabnetwork.tk/php/get-events.php?fablab=" + username;
+    } else {
+        url = "http://fablabnetwork.tk/php/get-events.php?"
+    }
+
+    return await fetch(url)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (response) {
+
+            const events = response;
+            let array = []
+
+            for (let i = 0; i < events.length; i++) {
+
+                array = [...array, {
+                    title: events[i].title,
+                    startDate: events[i].startDate,
+                    endDate: events[i].endDate,
+                    image: {uri: 'http://www.fablabnetwork.tk/' + events[i].image},
+                    coord: {lat: Number(events[i].lat), lon: Number(events[i].lon)},
+                    description: events[i].description,
+                    fabUsername: events[i].fablabName
                 }];
             }
 

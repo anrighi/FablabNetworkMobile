@@ -7,6 +7,8 @@ import FablabScreen from "../screens/FablabScreen";
 import MachineListScreen from "../screens/MachineListScreen";
 import MachineScreen from "../screens/MachineScreen";
 import BookingScreen from "../screens/BookingScreen";
+import EventListScreen from "../screens/EventListScreen";
+import EventScreen from "../screens/EventScreen";
 
 const FablabStack = createStackNavigator(
     {
@@ -14,7 +16,9 @@ const FablabStack = createStackNavigator(
         MapDetail: MapScreen,
         MachineList: MachineListScreen,
         Machine: MachineScreen,
-        Book: BookingScreen
+        Book: BookingScreen,
+        EventList: EventListScreen,
+        Event: EventScreen,
     });
 
 FablabStack.navigationOptions = {
