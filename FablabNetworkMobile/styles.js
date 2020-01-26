@@ -1,6 +1,11 @@
 import {Dimensions, StyleSheet} from "react-native";
 
 const styles = StyleSheet.create({
+
+    login_container: {
+        margin:100,
+    },
+
     cardContainer: {
         flex: 1,
     },

@@ -10,10 +10,13 @@
 import React from 'react';
 import {StyleSheet, View, YellowBox} from 'react-native';
 import AppNavigator from './navigation/AppNavigator';
-import {Provider} from "unstated";
+import {Provider, Subscribe} from "unstated";
 import i18n from "i18n-js";
-import LoginScreen from "./screens/LoginScreen";
 import {AppearanceProvider} from 'react-native-appearance';
+import {LoginPersistentContainer} from "./containers/LoginPeristentContainer";
+import {UserLoginContainer} from "./containers/UserLoginContainer";
+import {FablabLoginContainer} from "./containers/FablabLoginContainer";
+import LoginPersistencyChecker from "./components/LoginPersistencyChecker";
 
 YellowBox.ignoreWarnings([
     'Warning: componentWillMount is deprecated',
@@ -27,6 +30,10 @@ class App extends React.Component {
     state = {
         locale: 'it',
         logged: true,
+        haslogged: false,
+        container: '',
+        username: '',
+
     }
 
     t = (scope, options) => {
@@ -42,40 +49,91 @@ class App extends React.Component {
         console.log('true');
     };
 
-    render() {
+    setHasLogged = logged => {
+        this.setState({haslogged: logged})
+    };
 
-        if (this.state.logged) {
-            return (
-                <AppearanceProvider>
-                    <Provider>
-                        <View style={styles.container}>
-                            <AppNavigator
-                                screenProps={{
-                                    t: this.t,
-                                    locale: this.state.locale,
-                                    setLocale: this.setLocale,
-                                }}
-                            />
-                        </View>
-                    </Provider>
-                </AppearanceProvider>
-            )
-
+    setContainer = (type, username) => {
+        if (type = 'user') {
+            this.setState({container: UserLoginContainer, username: username});
+        } else if (type = 'fablab') {
+            this.setState({container: FablabLoginContainer, username: username});
         } else {
-            return (
-                <AppearanceProvider>
-                    <Provider>
-                        <View style={styles.login_container}>
-                            <LoginScreen
-                                loggedProps={{
-                                    setAuth: this.setAuth,
-                                }}
-                            />
-                        </View>
-                    </Provider>
-                </AppearanceProvider>
-            )
+            console.log('Error in setContainer: App.js row 42')
         }
+    }
+
+    render() {
+        return (
+            <AppearanceProvider>
+                <Provider>
+                    <Subscribe to={[LoginPersistentContainer]}>{pcon =>
+                        (
+                            <View style={styles.container}>
+                                {
+                                    pcon.state.logged && pcon.type === 'user' &&
+                                    <Subscribe to={[UserLoginContainer]}>{container => (
+                                        <AppNavigator
+                                            screenProps={{
+                                                t: this.t,
+                                                locale: this.state.locale,
+                                                setLocale: this.setLocale,
+                                                username: pcon.state.username,
+                                            }}
+                                        />
+                                    )}
+                                    </Subscribe>
+                                }
+                                {
+                                    pcon.state.logged && pcon.type === 'fablab' &&
+                                    <Subscribe to={[FablabLoginContainer]}>{container => (
+                                        <AppNavigator
+                                            screenProps={{
+                                                t: this.t,
+                                                locale: this.state.locale,
+                                                setLocale: this.setLocale,
+                                                username: pcon.state.username,
+                                            }}
+                                        />
+                                    )}
+                                    </Subscribe>
+                                }
+                                {
+                                    this.state.haslogged &&
+                                    <Subscribe to={[this.state.container]}>{container => (
+                                        <View style={styles.container}>
+                                            <AppNavigator
+                                                screenProps={{
+                                                    t: this.t,
+                                                    locale: this.state.locale,
+                                                    setLocale: this.setLocale,
+                                                    username: this.state.username,
+                                                }}
+                                            />
+                                        </View>
+                                    )}
+                                    </Subscribe>
+                                }
+                                {
+                                    !pcon.state.logged &&
+                                    <LoginPersistencyChecker
+                                        toCheck={{
+                                            type: 'null',
+                                            username: pcon.state.username,
+                                            logged: false,
+                                        }}
+                                        persistency={pcon}
+                                        hasLogged={this.setHasLogged}
+                                        setContainer={this.setContainer}
+                                        styles={{styles: styles}}
+                                    />
+                                }
+                            </View>
+                        )}
+                    </Subscribe>
+                </Provider>
+            </AppearanceProvider>
+        )
     }
 }
 

@@ -1,11 +1,16 @@
 import React, {Component} from 'react'
-import {Dimensions, StyleSheet, View} from 'react-native'
-import {Button, ListItem} from "react-native-elements";
-import TouchableScale from 'react-native-touchable-scale';
-import {Subscribe} from "unstated";
+import {
+    StyleSheet,
+    Text,
+    View,
+    TouchableOpacity,
+    Image,
+    Alert,
+    ScrollView,
+    FlatList,
+} from 'react-native';
 import {UserLoginContainer} from "../containers/UserLoginContainer";
 import {Icon} from "react-native-elements"
-import Text from "react-native-web/src/exports/Text";
 
 
 class Dashboard extends Component {
@@ -13,6 +18,12 @@ class Dashboard extends Component {
     state = {
         loading: true,
         container: UserLoginContainer,
+        data: [
+            {id: 0, title: "MyBalance", color: "#FF4500", icon: 'euro-symbol',},
+            {id: 1, title: "MyMembership", color: "#87CEEB", icon: 'credit-card',},
+            {id: 2, title: "Projects", color: "#4682B4", icon: 'donut-large',},
+            {id: 3, title: "Logout", color: "#4682B4", icon: 'exit-to-app'}
+        ],
     };
 
     openPage(index) {
@@ -31,162 +42,110 @@ class Dashboard extends Component {
 
 
     render() {
-
-        const list = [
-            {
-                title: 'MyBalance',
-                icon: 'money',
-                key: 0,
-            },
-            {
-                title: 'MyMembership',
-                icon: 'credit-card',
-                key: 1,
-            },
-            {
-                title: 'Projects',
-                icon: 'puzzle-piece',
-                key: 2,
-            },
-            {
-                title: 'Logout',
-                icon: 'sign-out',
-                key: 3,
-            },
-        ];
-
-
         return (
-            <View style={styles.mainviewStyle}>
-                {
-                    list.map((item) => (
-                        <View>
-                            <Icon
-                                raised
-                                name={item.icon}
-                                type='font-awesome'
-                                color='#f50'
-                                onPress={() => this.openPage(item.key)}
-                            />
-                        </View>
-                    ))
-                }
+            <View style={styles.container}>
+                <FlatList style={styles.list}
+                          contentContainerStyle={styles.listContainer}
+                          data={this.state.data}
+                          horizontal={false}
+                          numColumns={2}
+                          keyExtractor={(item) => {
+                              return item.id;
+                          }}
+                          renderItem={({item}) => {
+                              return (
+                                  <View>
+                                      <TouchableOpacity style={[styles.card, {backgroundColor: item.color}]}
+                                                        onPress={() => {
+                                                            this.openPage(item.id)
+                                                        }}>
+                                          <Icon
+                                              raised
+                                              name= {item.icon}
+                                              color={'#000000'}
+                                          />
+                                      </TouchableOpacity>
+
+                                      <View style={styles.cardHeader}>
+                                          <View style={{alignItems: "center", justifyContent: "center"}}>
+                                              <Text style={[styles.title, {color: item.color}]}>{item.title}</Text>
+                                          </View>
+                                      </View>
+                                  </View>
+                              )
+                          }}/>
             </View>
-        )
+        );
     }
 }
 
 const styles = StyleSheet.create({
-    cardContainer: {
-        flex: 1,
-    },
-
-
     container: {
         flex: 1,
-        flexDirection: 'column',
+        marginTop: 40,
+        backgroundColor: '#fff',
     },
-    coverContainer: {
-        position: 'relative',
+    list: {
+        paddingHorizontal: 5,
+        backgroundColor: "#fff",
     },
-    coverImage: {
-        height: Dimensions.get('window').width * (3 / 4),
-        width: Dimensions.get('window').width,
+    listContainer: {
+        alignItems: 'center'
     },
-    headerContainer: {
+    /******** card **************/
+    card: {
+        shadowColor: '#474747',
+        shadowOffset: {
+            width: 0,
+            height: 6,
+        },
+        shadowOpacity: 0.37,
+        shadowRadius: 7.49,
+
+        elevation: 12,
+        marginVertical: 20,
+        marginHorizontal: 40,
+        backgroundColor: "#e2e2e2",
+        //flexBasis: '42%',
+        width: 120,
+        height: 120,
+        borderRadius: 60,
         alignItems: 'center',
-        backgroundColor: '#FFF',
+        justifyContent: 'center'
     },
-    scroll: {
-        backgroundColor: '#FFF',
-        flex: 1,
-        marginBottom: 55,
-    },
-    productRow: {
-        margin: 25,
-    },
-    mainviewStyle: {
-        flex: 1,
-        flexGrow: 1,
-        flexDirection: 'column',
-    },
-    coverMetaContainer: {
-        alignItems: 'flex-end',
-        flex: 1,
-        justifyContent: 'flex-end',
-        // marginBottom: 15,
-        // marginRight: 15,
-    },
-    footer: {
-        position: 'absolute',
-        flex: 0.1,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: '#F64A25',
+    cardHeader: {
+        paddingVertical: 17,
+        paddingHorizontal: 16,
+        borderTopLeftRadius: 1,
+        borderTopRightRadius: 1,
         flexDirection: 'row',
-        height: 65,
-        alignItems: 'center',
+        alignItems: "center",
+        justifyContent: "center"
     },
-    buttonFooter: {
-        alignItems: 'center',
-        justifyContent: 'center',
+    cardContent: {
+        paddingVertical: 12.5,
+        paddingHorizontal: 16,
+    },
+    cardFooter: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingTop: 12.5,
+        paddingBottom: 25,
+        paddingHorizontal: 16,
+        borderBottomLeftRadius: 1,
+        borderBottomRightRadius: 1,
+    },
+    cardImage: {
+        height: 50,
+        width: 50,
+        alignSelf: 'center'
+    },
+    title: {
+        fontSize: 24,
         flex: 1,
+        alignSelf: 'center',
+        fontWeight: 'bold'
     },
-    navigatorButton: {
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        flex: 1,
-    },
-    navigatorText: {
-        color: '#08ff00',
-        fontWeight: 'bold',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-
-        fontSize: 16,
-    },
-    borderCenter: {
-        height: 55,
-        borderWidth: 0.5,
-        borderColor: '#FFA890',
-    },
-    textFooter: {
-        color: 'white',
-        fontWeight: 'bold',
-        alignItems: 'center',
-        fontSize: 18,
-    },
-    priceText: {
-        marginBottom: 5,
-        letterSpacing: 1,
-
-        color: '#000000',
-        fontSize: 36,
-        fontWeight: '400',
-    },
-    detailText: {
-        marginBottom: 4,
-        color: '#000000',
-        fontSize: 22,
-        fontWeight: '600',
-        letterSpacing: 0.5,
-    },
-    subDetailText: {
-        color: '#000000',
-        fontSize: 16,
-        fontWeight: '100',
-        lineHeight: 28,
-        letterSpacing: 0.5,
-    },
-    descriptionText: {
-        marginBottom: 4,
-        color: '#828282',
-        fontSize: 16,
-        fontWeight: '400',
-        letterSpacing: 1,
-    },
-
-})
+});
 
 export default Dashboard

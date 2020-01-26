@@ -1,9 +1,10 @@
+
 import {Container} from "unstated";
 
 export class UserLoginContainer extends Container {
 
     state = {
-        username: '',
+        username: 'null',
         name: '',
         surname: '',
         description: '',

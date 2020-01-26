@@ -11,7 +11,6 @@ class MembershipScreen extends Component {
     state = {
         loading: true,
         settingsNav: this.props.settingsNav,
-        container: UserLoginContainer,
     };
 
     static navigationOptions = ({screenProps: {t}}) => ({
