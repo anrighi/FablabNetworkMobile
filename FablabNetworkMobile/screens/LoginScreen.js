@@ -17,7 +17,7 @@ class LoginScreen extends React.Component {
             this.setState({type: type})
         } else if (type == 'user') {
             this.setState({type: type});
-          //  this.props.loggedProps.persistency.deleteCache().then(r => console.log("mona"))
+          //  this.props.loggedProps.persistency.deleteCache().then(r => console.log("deleted"))
         } else {
             console.log('ERROR:' + type);
         }

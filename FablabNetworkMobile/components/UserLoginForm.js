@@ -39,7 +39,7 @@ class UserLoginForm extends React.Component {
                 "{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")) {
                 isEmail = true;
             }
-            console.log(this.state.username);
+
             login(this.state.username, this.state.password, isEmail, 'user')
                 .then(
                     r => {
@@ -54,8 +54,7 @@ class UserLoginForm extends React.Component {
 
                             this.setState({exception: false, isVisible: false});
 
-                            authoriser.setContainer(authoriser.type, authoriser.propsToCheck.username);
-                            authoriser.hasLogged(true);
+                            authoriser.setContainer(authoriser.type, r[0].username, true);
                         }
                     }
                 )

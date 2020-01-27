@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
-import {Text, View} from 'react-native'
+import {ScrollView, Text, View} from 'react-native'
 import {UserLoginContainer} from "../containers/UserLoginContainer";
 import styles from "../styles";
-import {Button, Overlay} from "react-native-elements";
+import {Button, Card, Image, ListItem, Overlay} from "react-native-elements";
 import {getMembership} from "./webServices/userGetters";
+import {disableMembership} from "./webServices/userSetters";
 
 
 class MembershipList extends Component {
@@ -13,31 +14,96 @@ class MembershipList extends Component {
         loading: true,
         settingsNav: this.props.settingsNav,
         container: UserLoginContainer,
+        found: false,
+        confirmation: false,
     };
 
     componentDidMount() {
-        getMembership(this.props.username).then(response => {
-            console.log(response);
+
+        console.log(this.props.username);
+        getMembership(this.props.username).then(res => {
+            if(res === "membershipException" | res === "nullParamException") {
+                this.setState({found: false})
+            } else {
+                this.setState({memberships: res.memberships})
+            }
         }).then(() => this.setState({loading: false}))
+    }
+
+    disableMemb(id){
+
+        Alert.alert(
+            'Are you sure?',
+            'To enable again your membership you have to present yourself by your fablab with a valid id-card. Do you want to proceed?,'
+            [
+                {
+                    text: 'Cancel',
+                    onPress: () => this.setState({confirmation: false}),
+                    style: 'cancel',
+                },
+                { text: 'OK', onPress: () => this.setState({confirmation: true})}
+            ],
+            { cancelable: false }
+        );
+
+        if(this.state.confirmation) {
+            disableMembership(id).then(res => {
+                if(res.data === "Success"){
+                    Alert.alert(
+                        'Success',
+                        'Your membership is now disabled!',
+                            [
+                                { text: 'OK' }
+                            ],
+                        { cancelable: false }
+                    );
+                }
+            })
+        }
     }
 
     render() {
         if (this.state.loading) {
             return (
-                <Overlay isVisible={this.state.loading}>
+                <Overlay
+                    isVisible={this.state.loading}
+                    overlayStyle={{width: 55, height:55, alignContent:'center'}}
+                    borderRadius={100}>
+
                     <Button
-                        title="Loading button"
-                        width="20"
-                        height="20"
+                        type="clear"
+                        width="50"
+                        height="50"
                         loading
                     />
                 </Overlay>
             )
         } else {
             return (
-                <View style={styles.mainviewStyle}>
-
-                </View>
+                <ScrollView style={styles.mainviewStyle}>
+                    {
+                        this.state.memberships.map((membership, index) => {
+                            let active = '';
+                            if(membership.active){
+                                active = 'Active';
+                            } else {
+                                active = 'Inactive';
+                            }
+                          return (
+                              <ListItem
+                                  key={index}
+                                  leftAvatar={{ source: { uri: membership.profile_photo } }}
+                                  title={membership.fablab_username}
+                                  subtitle={"Member since" + membership.start_date
+                                  + " - " + active}
+                                  onPress={() => this.disableMemb(membership.id)}
+                                  bottomDivider
+                                  chevron
+                              />
+                          )
+                        })
+                    }
+                </ScrollView>
             )
         }
     }

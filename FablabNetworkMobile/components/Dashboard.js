@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 import {UserLoginContainer} from "../containers/UserLoginContainer";
 import {Icon} from "react-native-elements"
+import {Subscribe} from "unstated";
+import {LoginPersistentContainer} from "../containers/LoginPeristentContainer";
 
 
 class Dashboard extends Component {
@@ -26,7 +28,7 @@ class Dashboard extends Component {
         ],
     };
 
-    openPage(index) {
+    openPage(index,p) {
         if (index = 0) {
             console.log(index)
             this.props.navFunction('BalanceScreen');
@@ -36,13 +38,14 @@ class Dashboard extends Component {
             this.props.navFunction('ProjectScreen');
         } else if (index = 3) {
             console.log("LOGGED OUT")
-            //TODO: METTERE LOG OUT
+            p
         }
     }
 
 
     render() {
         return (
+            <Subscribe to={LoginPersistentContainer}> {p =>(
             <View style={styles.container}>
                 <FlatList style={styles.list}
                           contentContainerStyle={styles.listContainer}
@@ -57,7 +60,7 @@ class Dashboard extends Component {
                                   <View>
                                       <TouchableOpacity style={[styles.card, {backgroundColor: item.color}]}
                                                         onPress={() => {
-                                                            this.openPage(item.id)
+                                                            this.openPage(item.id,p)
                                                         }}>
                                           <Icon
                                               raised
@@ -75,6 +78,7 @@ class Dashboard extends Component {
                               )
                           }}/>
             </View>
+            )} </Subscribe>
         );
     }
 }

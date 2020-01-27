@@ -49,15 +49,11 @@ class App extends React.Component {
         console.log('true');
     };
 
-    setHasLogged = logged => {
-        this.setState({haslogged: logged})
-    };
-
-    setContainer = (type, username) => {
+    setContainer = (type, username, logged) => {
         if (type = 'user') {
-            this.setState({container: UserLoginContainer, username: username});
+            this.setState({container: UserLoginContainer, username: username, haslogged: logged});
         } else if (type = 'fablab') {
-            this.setState({container: FablabLoginContainer, username: username});
+            this.setState({container: FablabLoginContainer, username: username, haslogged: logged});
         } else {
             console.log('Error in setContainer: App.js row 42')
         }
@@ -123,7 +119,6 @@ class App extends React.Component {
                                             logged: false,
                                         }}
                                         persistency={pcon}
-                                        hasLogged={this.setHasLogged}
                                         setContainer={this.setContainer}
                                         styles={{styles: styles}}
                                     />

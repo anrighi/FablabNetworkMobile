@@ -17,7 +17,6 @@ class LoginPersistencyChecker extends React.Component {
                     loggedProps={{
                         setContainer: this.props.setContainer,
                         propsToCheck: propsToCheck,
-                        hasLogged: this.props.hasLogged,
                         persistency: this.props.persistency,
                     }}
                 />

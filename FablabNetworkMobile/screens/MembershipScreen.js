@@ -11,6 +11,7 @@ class MembershipScreen extends Component {
     state = {
         loading: true,
         settingsNav: this.props.settingsNav,
+        username: this.props.screenProps.username,
     };
 
     static navigationOptions = ({screenProps: {t}}) => ({
@@ -19,12 +20,10 @@ class MembershipScreen extends Component {
 
     render() {
         return (
-            <Subscribe to={UserLoginContainer}> {p => (
-                <View style={styles.mainviewStyle}>
-                    <MembershipList username={p.username}/>
-                </View>
-            )}
-            </Subscribe>
+            <View style={styles.mainviewStyle}>
+                <MembershipList username={this.state.username}/>
+            </View>
+
         )
     }
 }
