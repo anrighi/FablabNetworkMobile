@@ -9,7 +9,7 @@ class FablabScreen extends React.Component {
     }
 
     static navigationOptions = ({screenProps: {t}, navigation}) => ({
-        title: t('nearby'),
+        title: navigation.state.params.fablab.name,
         headerLeft: <HeaderBackButton onPress={() => navigation.navigate('FablabList')} />
     });
 

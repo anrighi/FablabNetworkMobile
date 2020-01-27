@@ -55,7 +55,7 @@ class Fablab extends Component {
                             onPress={() => Linking.openURL('mailto:' + this.state.fablab.email)}/>
                         <Icon
                             raised
-                            name='chevron-left'
+                            name='party-mode'
                             color='#f50'
                             onPress={() => this.props.eventFunction(this.state.fablab.username)}/>
                     </View>

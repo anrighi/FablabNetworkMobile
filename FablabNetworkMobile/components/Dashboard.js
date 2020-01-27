@@ -1,18 +1,7 @@
 import React, {Component} from 'react'
-import {
-    StyleSheet,
-    Text,
-    View,
-    TouchableOpacity,
-    Image,
-    Alert,
-    ScrollView,
-    FlatList,
-} from 'react-native';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
 import {UserLoginContainer} from "../containers/UserLoginContainer";
 import {Icon} from "react-native-elements"
-import {Subscribe} from "unstated";
-import {LoginPersistentContainer} from "../containers/LoginPeristentContainer";
 
 
 class Dashboard extends Component {
@@ -28,7 +17,7 @@ class Dashboard extends Component {
         ],
     };
 
-    openPage(index,p) {
+    openPage(index, p) {
         if (index = 0) {
             console.log(index)
             this.props.navFunction('BalanceScreen');
@@ -45,7 +34,6 @@ class Dashboard extends Component {
 
     render() {
         return (
-            <Subscribe to={LoginPersistentContainer}> {p =>(
             <View style={styles.container}>
                 <FlatList style={styles.list}
                           contentContainerStyle={styles.listContainer}
@@ -60,11 +48,11 @@ class Dashboard extends Component {
                                   <View>
                                       <TouchableOpacity style={[styles.card, {backgroundColor: item.color}]}
                                                         onPress={() => {
-                                                            this.openPage(item.id,p)
+                                                            this.openPage(item.id, p)
                                                         }}>
                                           <Icon
                                               raised
-                                              name= {item.icon}
+                                              name={item.icon}
                                               color={'#000000'}
                                           />
                                       </TouchableOpacity>
@@ -78,7 +66,6 @@ class Dashboard extends Component {
                               )
                           }}/>
             </View>
-            )} </Subscribe>
         );
     }
 }

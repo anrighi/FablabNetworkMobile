@@ -4,7 +4,7 @@ import FablabList from "../components/FablabList";
 
 class FablabListScreen extends React.Component {
     static navigationOptions = ({screenProps: {t}}) => ({
-        title: t('machineList')
+        title: t('fablabList')
     });
 
     navFunction = (fablab) => {

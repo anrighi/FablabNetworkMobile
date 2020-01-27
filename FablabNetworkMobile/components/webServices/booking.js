@@ -1,5 +1,6 @@
 import axios from "axios";
 import moment from 'moment';
+import {Alert} from "react-native";
 
 export const bookPrinter = async (id, start, end, materialID, materialAmount) => {
 
@@ -17,7 +18,15 @@ export const bookPrinter = async (id, start, end, materialID, materialAmount) =>
     data.append("materialAmount", materialAmount);
 
     return await axios.post(url, data)
-        .then(res => console.log(res.data))
+        .then(res => Alert.alert(
+            'Attention',
+            res.data,
+            [
+                {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ],
+            {cancelable: false},
+        ))
+
         .catch(err => console.log(err));
 }
 
@@ -35,7 +44,14 @@ export const bookMachine = async (id, start, end) => {
     data.append("end", endJSON);
 
     return await axios.post(url, data)
-        .then(res => console.log(res.data))
+        .then(res => Alert.alert(
+            'Attention',
+            res.data,
+            [
+                {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ],
+            {cancelable: false},
+        ))
         .catch(err => console.log(err));
 }
 
@@ -48,6 +64,14 @@ export const becomeMember = async (username, fabUsername) => {
     data.append("fablab", fabUsername);
 
     return await axios.post(url, data)
-        .then(res => console.log(res.data))
+        .then(res =>
+            Alert.alert(
+                'Attention',
+                res.data,
+                [
+                    {text: 'OK', onPress: () => console.log('OK Pressed')},
+                ],
+                {cancelable: false},
+            ))
         .catch(err => console.log(err));
 }
