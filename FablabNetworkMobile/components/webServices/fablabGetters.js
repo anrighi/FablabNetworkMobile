@@ -107,7 +107,7 @@ export const getEvents = async (username) => {
     if (username.length > 0) {
         url = "http://fablabnetwork.tk/php/get-events.php?fablab=" + username;
     } else {
-        url = "http://fablabnetwork.tk/php/get-events.php?"
+        url = "http://fablabnetwork.tk/php/get-events.php"
     }
 
     return await fetch(url)

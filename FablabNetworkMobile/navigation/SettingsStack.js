@@ -4,9 +4,11 @@ import TabBarIcon from "../components/TabBarIcon";
 import {Platform} from "react-native";
 import React from "react";
 import LanguageScreen from "../screens/LanguageScreen";
+import CreateProjectScreen from "../screens/CreateProjectScreen";
 
 const SettingsStack = createStackNavigator(
     {
+        Create: CreateProjectScreen,
         Settings: SettingsScreen,
         Language: LanguageScreen,
     }

@@ -51,3 +51,27 @@ export const becomeMember = async (username, fabUsername) => {
         .then(res => console.log(res.data))
         .catch(err => console.log(err));
 }
+
+export const createProject = async (user, title, description, images) => {
+
+    const url = "http://www.fablabnetwork.tk/php/insert-project.php";
+    const data = new FormData();
+
+    data.append("user", user);
+    data.append("title", title);
+    data.append("description", description);
+    data.append("files[]", images);
+
+    const config = {
+        headers: {
+            'content-type': 'multipart/form-data'
+        }
+    }
+
+    console.log(data)
+
+    return await axios.post(url, data, config)
+        .then(res => console.log(res.data))
+        .catch(err => console.log(err));
+}
+
