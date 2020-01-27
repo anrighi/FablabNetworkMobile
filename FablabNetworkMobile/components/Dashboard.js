@@ -24,28 +24,27 @@ class Dashboard extends Component {
             {id: 0, title: "MyBalance", color: "#FF4500", icon: 'euro-symbol',},
             {id: 1, title: "MyMembership", color: "#87CEEB", icon: 'credit-card',},
             {id: 2, title: "Projects", color: "#4682B4", icon: 'donut-large',},
-            {id: 3, title: "Logout", color: "#4682B4", icon: 'exit-to-app'}
+            {id: 3, title: "Clear Persistency", color: "#4682B4", icon: 'exit-to-app'}
         ],
     };
 
-    openPage(index,p) {
-        if (index = 0) {
-            console.log(index)
-            this.props.navFunction('BalanceScreen');
-        } else if (index = 1) {
+    openPage(index) {
+        if (index === 0) {
+            //this.props.navFunction('BalanceScreen');
+        } else if (index === 1) {
             this.props.navFunction('MembershipScreen');
-        } else if (index = 2) {
-            this.props.navFunction('ProjectScreen');
-        } else if (index = 3) {
-            console.log("LOGGED OUT")
-            p
+        } else if (index === 2) {
+            this.props.navFunction('ProjectListScreen');
+        } else if (index === 3) {
+            console.log("Persistency cleared");
+
         }
     }
 
 
     render() {
         return (
-            <Subscribe to={LoginPersistentContainer}> {p =>(
+
             <View style={styles.container}>
                 <FlatList style={styles.list}
                           contentContainerStyle={styles.listContainer}
@@ -60,11 +59,11 @@ class Dashboard extends Component {
                                   <View>
                                       <TouchableOpacity style={[styles.card, {backgroundColor: item.color}]}
                                                         onPress={() => {
-                                                            this.openPage(item.id,p)
+                                                            this.openPage(item.id)
                                                         }}>
                                           <Icon
                                               raised
-                                              name= {item.icon}
+                                              name={item.icon}
                                               color={'#000000'}
                                           />
                                       </TouchableOpacity>
@@ -78,7 +77,7 @@ class Dashboard extends Component {
                               )
                           }}/>
             </View>
-            )} </Subscribe>
+
         );
     }
 }

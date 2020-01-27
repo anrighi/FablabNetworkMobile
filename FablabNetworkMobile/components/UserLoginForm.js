@@ -112,6 +112,7 @@ class UserLoginForm extends React.Component {
                                         console.log('NO_Persistence');
                                     }
                                 }}
+                                disabled
                             />
                         </View>
                     )}

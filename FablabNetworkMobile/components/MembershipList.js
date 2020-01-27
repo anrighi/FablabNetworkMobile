@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {ScrollView, Text, View} from 'react-native'
+import {ScrollView, Alert, View} from 'react-native'
 import {UserLoginContainer} from "../containers/UserLoginContainer";
 import styles from "../styles";
 import {Button, Card, Image, ListItem, Overlay} from "react-native-elements";
@@ -34,7 +34,7 @@ class MembershipList extends Component {
 
         Alert.alert(
             'Are you sure?',
-            'To enable again your membership you have to present yourself by your fablab with a valid id-card. Do you want to proceed?,'
+            'To enable again your membership you have to present yourself by your fablab with a valid id-card. Do you want to proceed?,',
             [
                 {
                     text: 'Cancel',
@@ -48,7 +48,7 @@ class MembershipList extends Component {
 
         if(this.state.confirmation) {
             disableMembership(id).then(res => {
-                if(res.data === "Success"){
+                if(res === "Success!"){
                     Alert.alert(
                         'Success',
                         'Your membership is now disabled!',
@@ -57,6 +57,18 @@ class MembershipList extends Component {
                             ],
                         { cancelable: false }
                     );
+                    console.log(res)
+                }
+                else {
+                    Alert.alert(
+                        'Error',
+                        'An error occurred, please try later',
+                        [
+                            { text: 'OK' }
+                        ],
+                        { cancelable: false }
+                    );
+                    console.log(res)
                 }
             })
         }

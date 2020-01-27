@@ -3,6 +3,11 @@ import {View} from 'react-native';
 import ProjectList from "../components/ProjectList";
 
 class ProjectListScreen extends React.Component {
+
+    state = {
+        username: this.props.screenProps.username,
+    }
+
     static navigationOptions = ({screenProps: {t}}) => ({
         title: t('machineList')
     });
@@ -16,6 +21,7 @@ class ProjectListScreen extends React.Component {
             <View>
                 <ProjectList
                     navFunction={this.navFunction}
+                    username={this.state.username}
                 />
             </View>
         );

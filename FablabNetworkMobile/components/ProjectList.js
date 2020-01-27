@@ -8,7 +8,7 @@ class ProjectList extends React.Component {
     state = {
         loading: true,
         projects: [],
-        user: this.props.screenProps.username
+        user: this.props.username
     }
 
     componentDidMount() {

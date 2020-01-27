@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const disableMembership = async (id) => {
 
-    const url = "http://fablabnetwork.tk/php/set-memberships.php";
+    const url = "http://fablabnetwork.tk/php/set-membership.php";
     const data = new FormData();
 
     data.append('id', id);
