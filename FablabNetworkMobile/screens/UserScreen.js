@@ -30,13 +30,14 @@ class UserScreen extends React.Component {
     });
 
     navFunction = (user) => {
-        this.props.navigation.navigate('ProjList', {user: user})
+        this.props.navigation.navigate('ProjectListScreen', {user: user})
     }
 
     render() {
         return (
             <View style={styles.container}>
                 <User
+                    username={this.props.screenProps.username}
                     navFunction={this.navFunction}
                 />
             </View>

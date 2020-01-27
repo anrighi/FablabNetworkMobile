@@ -27,7 +27,7 @@ class Fablab extends Component {
                             raised
                             name='person-add'
                             color='#f50'
-                            onPress={() => becomeMember('giorgio', this.state.fablab.username)}/>
+                            onPress={() => becomeMember(this.props.username, this.state.fablab.username)}/>
 
                     </View>
                     <Text style={styles.descriptionText}>{this.state.fablab.address}</Text>

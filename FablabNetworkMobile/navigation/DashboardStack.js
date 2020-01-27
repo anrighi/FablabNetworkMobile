@@ -7,6 +7,8 @@ import MembershipScreen from "../screens/MembershipScreen";
 import ProfileSettingsScreen from "../screens/ProfileSettingsScreen";
 import BalanceScreen from "../screens/BalanceScreen";
 import ProjectListScreen from "../screens/ProjectListScreen";
+import ProjectScreen from "../screens/ProjectScreen";
+import UserScreen from "../screens/UserScreen";
 
 const DashboardStack = createStackNavigator(
     {
@@ -15,6 +17,8 @@ const DashboardStack = createStackNavigator(
         BalanceScreen: BalanceScreen,
         MembershipScreen: MembershipScreen,
         ProjectListScreen: ProjectListScreen,
+        User: UserScreen,
+        Proj: ProjectScreen,
     });
 
 DashboardStack.navigationOptions = {

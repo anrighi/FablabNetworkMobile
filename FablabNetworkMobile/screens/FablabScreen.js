@@ -30,6 +30,7 @@ class FablabScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <Fablab
+                    username={this.props.screenProps.username}
                     data={this.props.navigation.state.params.fablab}
                     navFunction={this.navigationFunction}
                     eventFunction={this.eventFunction}

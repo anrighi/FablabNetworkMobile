@@ -14,7 +14,7 @@ import {getUserData} from "./webServices/userGetters";
 class User extends Component {
 
     state = {
-        username: 'giorgio',
+        username: this.props.username,
         user: '',
         loading: true
     }
@@ -43,7 +43,7 @@ class User extends Component {
                         <View style={styles.bodyContent}>
                             <TouchableOpacity style={styles.buttonContainer}
                                               onPress={() => this.props.navFunction(this.state.username)}>
-                                <Text>Opcion 1</Text>
+                                <Text>View My Projects</Text>
                             </TouchableOpacity>
                         </View>
                     </View>

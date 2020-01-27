@@ -26,7 +26,7 @@ class Settings extends Component {
     render() {
         const {avatar, name} = {
             avatar: 'http://www.fablabnetwork.tk/images/userProfilePhoto/66_1559641247.jpg',
-            name: 'ANDREA',
+            name: this.props.username,
         }
         return (
             <View style={styles.scroll}>

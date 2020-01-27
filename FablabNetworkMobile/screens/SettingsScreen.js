@@ -24,6 +24,7 @@ class SettingsScreen extends React.Component {
         return (
             <View style={{flex: 1}}>
                 <Settings
+                    username={this.props.screenProps.username}
                 changeLanguage={this.navLanguage}
                 />
             </View>

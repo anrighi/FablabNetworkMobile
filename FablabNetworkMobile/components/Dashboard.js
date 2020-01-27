@@ -10,7 +10,7 @@ class Dashboard extends Component {
         loading: true,
         container: UserLoginContainer,
         data: [
-            {id: 0, title: "MyBalance", color: "#FF4500", icon: 'euro-symbol',},
+            {id: 0, title: "MyProfile", color: "#FF4500", icon: 'euro-symbol',},
             {id: 1, title: "MyMembership", color: "#87CEEB", icon: 'credit-card',},
             {id: 2, title: "Projects", color: "#4682B4", icon: 'donut-large',},
             {id: 3, title: "Clear Persistency", color: "#4682B4", icon: 'exit-to-app'}
@@ -19,7 +19,7 @@ class Dashboard extends Component {
 
     openPage(index) {
         if (index === 0) {
-            //this.props.navFunction('BalanceScreen');
+            this.props.navFunction('User');
         } else if (index === 1) {
             this.props.navFunction('MembershipScreen');
         } else if (index === 2) {
