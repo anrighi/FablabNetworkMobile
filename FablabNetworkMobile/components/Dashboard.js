@@ -1,18 +1,7 @@
 import React, {Component} from 'react'
-import {
-    StyleSheet,
-    Text,
-    View,
-    TouchableOpacity,
-    Image,
-    Alert,
-    ScrollView,
-    FlatList,
-} from 'react-native';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
 import {UserLoginContainer} from "../containers/UserLoginContainer";
 import {Icon} from "react-native-elements"
-import {Subscribe} from "unstated";
-import {LoginPersistentContainer} from "../containers/LoginPeristentContainer";
 
 
 class Dashboard extends Component {
@@ -44,7 +33,6 @@ class Dashboard extends Component {
 
     render() {
         return (
-
             <View style={styles.container}>
                 <FlatList style={styles.list}
                           contentContainerStyle={styles.listContainer}
@@ -77,7 +65,6 @@ class Dashboard extends Component {
                               )
                           }}/>
             </View>
-
         );
     }
 }

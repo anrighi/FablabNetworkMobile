@@ -9,7 +9,6 @@ import EventSwitch from "./EventSwitch";
 const tabNavigator = createBottomTabNavigator({
     DashboardSwitch,
     FablabSwitch,
-    EventSwitch,
     SettingsStack,
 })
 

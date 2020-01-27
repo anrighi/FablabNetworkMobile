@@ -36,7 +36,7 @@ class EventList extends React.Component {
                                         rounded: true,
                                         source: event.image
                                     }}
-                                    onPress={() => this.props.navFunction(event, event.fabUsername)}
+                                    onPress={() => this.props.navFunction(event, this.props.fablab)}
                                 />
                             );
                         })}

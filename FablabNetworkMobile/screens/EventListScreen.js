@@ -13,15 +13,11 @@ class EventListScreen extends React.Component {
     }
 
     render() {
-        let fabName = ''
-        if(this.props.navigation.state.params !== undefined) {
-            fabName = this.props.navigation.state.params.fabUsername
-        }
         return (
             <View>
                 <EventList
                     navFunction={this.navFunction}
-                    fablab={fabName}
+                    fablab={this.props.navigation.state.params.fabUsername}
                 />
             </View>
         );

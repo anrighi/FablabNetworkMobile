@@ -7,7 +7,7 @@ export const disableMembership = async (id) => {
 
     data.append('id', id);
 
-    return await axios.post(url,data).then(res => {
+    return await axios.post(url, data).then(res => {
 
         return res.data;
 
