@@ -17,7 +17,7 @@
     "@react-native-community/datetimepicker": "2.1.0",
     "@react-navigation/web": "^1.0.0-alpha.9",
     "FormData": "^0.10.1",
-    "axios": "^0.19.1",
+    "axios": "^0.21.1",
     "crypto-js": "^3.1.9-1",
     "expo": "^36.0.0",
     "expo-asset": "~8.0.0",
@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "@react-native-community/async-storage": "^1.7.1",
-    "axios": "^0.19.1",
+    "axios": "^0.21.1",
     "babel-preset-expo": "^8.0.0",
     "expo-image-picker": "~8.0.1",
     "jest-expo": "^36.0.0",
