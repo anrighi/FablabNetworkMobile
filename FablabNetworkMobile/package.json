@@ -28,7 +28,7 @@
     "expo-web-browser": "~8.0.0",
     "i18n-js": "latest",
     "lottie-react-native": "~2.6.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "moment-timezone": "^0.5.27",
     "prop-types": "latest",
     "react": "16.9.0",
